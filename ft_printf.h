@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:37:05 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/13 22:34:05 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/14 10:43:51 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ char	*ft_uptrtoa_base(uintptr_t nbr, char *base);
 void	get_specf(char **str_cpy, t_specf *specf, va_list *arg);
 
 void	do_specf(const char *str_cpy, t_specf specf, char **print);
+
+char	*ft_strmjoin(char const *s1, char const *s2, int start);
 
 #endif
