@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:37:05 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/14 12:37:07 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/14 15:15:59 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ void	get_type(const char *str_cpy, char **print, va_list *arg);
 void	do_specf(const char *str_cpy, t_specf specf, char **print);
 
 char	*ft_strmjoin(char const *s1, char const *s2, int start);
+
+void	ft_putmem_fd(char *s, int n, int fd);
 
 #endif
