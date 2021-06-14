@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 15:45:18 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/06/07 15:32:08 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/06/14 12:58:49 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-int		ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	while (str[size] != '\0')
@@ -23,10 +23,10 @@ int		ft_strlen(char *str)
 	return (size);
 }
 
-int		is_base(char *str)
+int	is_base(char *str)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (str[i] != '\0')

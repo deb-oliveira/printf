@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/14 11:32:53 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/14 12:57:26 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static void	ft_precision(const char *str_cpy, int precision, char **print)
 
 	if (precision < 0)
 		return ;
-	if ((*str_cpy == 'd' || *str_cpy == 'i') && **print == '-')
-		precision++;
 	if (*str_cpy == 'd' || *str_cpy == 'i' || *str_cpy == 'o'
 		|| *str_cpy == 'u' || *str_cpy == 'x' || *str_cpy == 'X')
 	{
@@ -47,7 +45,7 @@ static void	ft_precision(const char *str_cpy, int precision, char **print)
 static void	ft_width(const char *str_cpy, t_specf specf, char **print)
 {
 	char	*print_aux;
-	
+
 	while (strlen(*print) < (size_t)(specf.width))
 	{
 		print_aux = *print;
@@ -90,6 +88,9 @@ static void	ft_hashflag(const char *str_cpy, t_specf specf, char **print)
 
 void	do_specf(const char *str_cpy, t_specf specf, char **print)
 {
+	if (specf.precision > 0
+		&& (*str_cpy == 'd' || *str_cpy == 'i') && **print == '-')
+		specf.precision++;
 	ft_precision(str_cpy, specf.precision, print);
 	ft_hashflag(str_cpy, specf, print);
 	ft_width(str_cpy, specf, print);
