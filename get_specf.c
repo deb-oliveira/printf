@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:05:09 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/13 23:38:11 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/14 12:03:12 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ static void	get_width(char **str_cpy, t_specf *specf, va_list *arg)
 		if (specf->width < 0)
 		{
 			specf->flags->minus = 1;
-			specf->width = specf->width * (-1); 
+			specf->width = specf->width * (-1);
+			if (specf->flags->zero == 1)
+				specf->flags->zero = 0;
 		}
 		(*str_cpy)++;
 	}
@@ -77,6 +79,8 @@ static void	get_precision(char **str_cpy, t_specf *specf, va_list *arg)
 		while (ft_isdigit(**str_cpy))
 			(*str_cpy)++;
 	}
+	if (specf->flags->zero == 1 && specf->precision > -1 && **str_cpy != '%')
+		specf->flags->zero = 0;
 }
 
 void	get_specf(char **str_cpy, t_specf *specf, va_list *arg)

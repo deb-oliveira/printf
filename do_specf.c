@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/14 11:10:42 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/14 11:32:53 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,18 @@ static void	ft_precision(const char *str_cpy, int precision, char **print)
 
 	if (precision < 0)
 		return ;
+	if ((*str_cpy == 'd' || *str_cpy == 'i') && **print == '-')
+		precision++;
 	if (*str_cpy == 'd' || *str_cpy == 'i' || *str_cpy == 'o'
 		|| *str_cpy == 'u' || *str_cpy == 'x' || *str_cpy == 'X')
 	{
 		while (strlen(*print) < (size_t)precision)
 		{
 			print_aux = *print;
-			*print = ft_strjoin("0", *print);
+			if ((*str_cpy == 'd' || *str_cpy == 'i') && **print == '-')
+				*print = ft_strmjoin(*print, "0", 1);
+			else
+				*print = ft_strjoin("0", *print);
 			free(print_aux);
 		}
 		if (precision == 0 && **print == '0' && strlen(*print) == 1)
