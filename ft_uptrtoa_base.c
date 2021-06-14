@@ -1,0 +1,64 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_uptrtoa_base.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/11 19:24:17 by doliveira         #+#    #+#             */
+/*   Updated: 2021/06/11 20:00:47 by doliveira        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft/libft.h"
+#include "ft_printf.h"
+
+static unsigned int	is_base(char *str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '+' || str[i] == '-')
+			return (0);
+		j = i + 1;
+		while (str[j] != '\0')
+		{
+			if (str[i] == str[j])
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+char	*ft_uptrtoa_base(uintptr_t nbr, char *base)
+{
+	uintptr_t		size;
+	char			*str;
+	char			*str_aux;
+	char			num[2];
+
+	size = ft_strlen(base);
+	if (is_base(base) == 0 || size < 2)
+		return (NULL);
+	str = NULL;
+	if (nbr == 0)
+		str = ft_strdup("0");
+	num[1] = '\0';
+	while (nbr != 0)
+	{
+		if (!str)
+			str = ft_calloc(1, sizeof(char));
+		str_aux = str;
+		num[0] = base[nbr % size];
+		str = ft_strjoin(str, num);
+		free(str_aux);
+		nbr = nbr / size;
+	}
+	str = ft_strrev(str);
+	return (str);
+}
