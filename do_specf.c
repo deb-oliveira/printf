@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/13 23:41:08 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/14 11:10:42 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ static void	ft_width(const char *str_cpy, t_specf specf, char **print)
 		print_aux = *print;
 		if (specf.flags->zero == 1 && specf.flags->hash == 1
 			&& (*str_cpy == 'o' || *str_cpy == 'x' || *str_cpy == 'X'))
-			*print = ft_strjoin("0", *print);
+			*print = ft_strmjoin(*print, "0", 2);
+		else if (specf.flags->zero == 1 && (*str_cpy == 'd' || *str_cpy == 'i')
+			&& **print == '-')
+			*print = ft_strmjoin(*print, "0", 1);
 		else if (specf.flags->zero == 1 && *str_cpy != 's' && *str_cpy != 'p'
 			&& *str_cpy != 'c' && *str_cpy != '%' && specf.precision < 0)
 			*print = ft_strjoin("0", *print);
@@ -75,7 +78,8 @@ static void	ft_hashflag(const char *str_cpy, t_specf specf, char **print)
 			*print = ft_strjoin("0x", *print);
 		if (*str_cpy == 'X')
 			*print = ft_strjoin("0X", *print);
-		free(print_aux);
+		if (print_aux != *print)
+			free(print_aux);
 	}
 }
 
