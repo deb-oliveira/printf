@@ -26,7 +26,6 @@ $(NAME):	$(OBJS)
 
 clean:
 				@$(RM) $(OBJS)
-				@make clean -C libft/
 
 fclean:		clean
 				@$(RM) $(NAME)
