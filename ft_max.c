@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putmem_fd.c                                     :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/14 15:11:11 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/15 09:55:06 by doliveira        ###   ########.fr       */
+/*   Created: 2021/06/15 10:09:26 by doliveira         #+#    #+#             */
+/*   Updated: 2021/06/15 10:15:37 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
-
-void	ft_putmem_fd(const char *s, int n, int fd)
+int	ft_max(int a, int b)
 {
-	int	count;
-
-	if (!s)
-		return ;
-	count = 0;
-	while (count < n)
-	{
-		write(fd, &s[count], 1);
-		count++;
-	}
+	if (a >= b)
+		return (a);
+	return (b);
 }

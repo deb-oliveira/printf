@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:37:05 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/14 15:15:59 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/15 10:10:29 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ void	do_specf(const char *str_cpy, t_specf specf, char **print);
 
 char	*ft_strmjoin(char const *s1, char const *s2, int start);
 
-void	ft_putmem_fd(char *s, int n, int fd);
+void	ft_putmem_fd(const char *s, int n, int fd);
+
+char	*ft_memjoin(const char *s1, const char *s2, size_t size1, size_t size2);
+
+int		ft_max(int a, int b);
 
 #endif
