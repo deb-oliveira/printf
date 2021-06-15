@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 14:59:47 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/15 10:15:11 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/15 10:51:32 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_printf(const char *str, ...)
 	{
 		str_cpy++;
 		get_specf(&str_cpy, &specf, &arg);
-		get_type(str_cpy, &print, &arg);
+		get_type(str_cpy, &print, specf, &arg);
 		do_specf(str_cpy, specf, &print);
 		if (*str_cpy != 'c')
 			count += ft_strlen(print);
