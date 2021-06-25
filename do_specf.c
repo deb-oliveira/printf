@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/25 16:07:16 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/25 16:22:57 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,18 @@ static void	ft_width(const char *str_cpy, t_specf specf, t_print *print)
 
 	realwidth = specf.width - (int)print->len;
 	if (specf.precision >= 0
-		&& (*str_cpy != 'c' && *str_cpy != 'p' && *str_cpy != '%'))
+		&& (*str_cpy == 'd' || *str_cpy == 'i' || *str_cpy == 'o'
+			|| *str_cpy == 'u' || *str_cpy == 'x' || *str_cpy == 'X'))
 	{
-		if (specf.width > specf.precision)
-			realwidth = specf.width - specf.precision;
+		if (specf.width > ft_max(specf.precision, ft_strlen(print->str)))
+			realwidth = specf.width - ft_max(specf.precision, ft_strlen(print->str));
+		else
+			realwidth = 0;
+	}
+	if (specf.precision >= 0 && *str_cpy == 's')
+	{
+		if (specf.width > ft_min(specf.precision, ft_strlen(print->str)))
+			realwidth = specf.width - ft_min(specf.precision, ft_strlen(print->str));
 		else
 			realwidth = 0;
 	}
