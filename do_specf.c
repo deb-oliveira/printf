@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/25 11:46:55 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/25 14:41:26 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	ft_width(const char *str_cpy, t_specf specf, t_print *print)
 	int	realwidth;
 
 	realwidth = specf.width - (int)print->len;
-	if (specf.precision > 0
+	if (specf.precision >= 0
 		&& (*str_cpy != 'c' && *str_cpy != 'p' && *str_cpy != '%'))
 	{
 		if (specf.width > specf.precision)
