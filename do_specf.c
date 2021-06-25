@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/25 15:50:26 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/25 15:53:54 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,10 @@ void	do_specf(const char *str_cpy, t_specf specf, t_print *print)
 	if (*str_cpy == 'c')
 		ft_putchar_fd(*(print->str), 1);
 	else
+	{
 		ft_putstr_fd(print->str, 1);
+		print->len += ft_strlen(print->str);
+	}
 	if (specf.flags->minus == 1)
 		ft_width(str_cpy, specf, print);
 	free(print_aux);
