@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/25 14:41:26 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/25 15:50:26 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ static void	ft_precision(const char *str_cpy, int precision, t_print *print)
 {
 	size_t	print_len;
 
-	print_len = ft_strlen(print->str);
-	if (precision < 0)
+	if (precision < 0
+		|| *str_cpy == 'c' || *str_cpy == 'p' || *str_cpy == '%')
 		return ;
+	print_len = ft_strxlen(print->str, '-');
 	if (*str_cpy == 'd' || *str_cpy == 'i' || *str_cpy == 'o'
 		|| *str_cpy == 'u' || *str_cpy == 'x' || *str_cpy == 'X')
 	{
@@ -115,12 +116,13 @@ void	do_specf(const char *str_cpy, t_specf specf, t_print *print)
 	char	*print_aux;
 
 	print_aux = print->str;
-	if (specf.precision > 0
-		&& (*str_cpy == 'd' || *str_cpy == 'i') && *(print->str) == '-')
-		specf.precision++;
-	print->len = ft_strlen(print->str);
-	if (*str_cpy == 'c')
+	if (specf.precision >= 0 && 
+		*str_cpy == 's' && (size_t)specf.precision < ft_strlen(print->str))
+		print->len = specf.precision;
+	else if (*str_cpy == 'c')
 		print->len = 1;
+	else
+		print->len = ft_strlen(print->str);
 	if (specf.flags->minus == 0)
 		ft_width(str_cpy, specf, print);
 	ft_hashflag(str_cpy, specf, &(print->len));

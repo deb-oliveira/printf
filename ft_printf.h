@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:37:05 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/25 10:16:37 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/25 15:27:35 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ char	*ft_strcjoin(char const *s1, char c);
 char	*ft_ftoa_base(double f, int n, char *base);
 
 char	*ft_strxdup(char *src, char x);
+
+size_t	ft_strxlen(char *src, char x);
 
 #endif
