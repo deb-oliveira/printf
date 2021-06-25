@@ -6,107 +6,130 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/15 09:45:28 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/25 11:46:55 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-static void	ft_zeroflag(const char *str_cpy, t_specf specf, char **print)
+static void	ft_zeroflag(const char *str_cpy, t_specf specf, t_print *print)
 {
-	if (specf.flags->hash == 1
-		&& (*str_cpy == 'o' || *str_cpy == 'x' || *str_cpy == 'X'))
-		*print = ft_strmjoin(*print, "0", 2);
-	else if ((*str_cpy == 'd' || *str_cpy == 'i') && **print == '-')
-		*print = ft_strmjoin(*print, "0", 1);
-	else if (*str_cpy != 's' && *str_cpy != 'p'
-		&& *str_cpy != 'c' && *str_cpy != '%' && specf.precision < 0)
-		*print = ft_strjoin("0", *print);
-	else if (*str_cpy == '%')
-		*print = ft_strjoin("0", *print);
-}
-
-static void	ft_hashflag(const char *str_cpy, t_specf specf, char **print)
-{
-	char	*print_aux;
-
-	if (specf.flags->hash == 1)
+	if (specf.precision < 0
+		&& (*str_cpy == 'd' || *str_cpy == 'i' || *str_cpy == 'o'
+			|| *str_cpy == 'u' || *str_cpy == 'x' || *str_cpy == 'X'))
 	{
-		print_aux = *print;
-		if (*str_cpy == 'o')
-			*print = ft_strjoin("0", *print);
-		if (*str_cpy == 'x')
-			*print = ft_strjoin("0x", *print);
-		if (*str_cpy == 'X')
-			*print = ft_strjoin("0X", *print);
-		if (print_aux != *print)
-			free(print_aux);
+		while (print->len < (size_t)specf.width)
+		{
+			if ((*str_cpy == 'd' || *str_cpy == 'i') && *(print->str) == '-')
+			{
+				ft_putstr_fd("-", 1);
+				(print->str)++;
+			}
+			ft_putstr_fd("0", 1);
+			(print->len)++;
+		}
+	}
+	else if (*str_cpy == '%')
+	{
+		while (print->len < (size_t)specf.width)
+		{
+			ft_putstr_fd("0", 1);
+			(print->len)++;
+		}
 	}
 }
 
-static void	ft_precision(const char *str_cpy, int precision, char **print)
+static void	ft_hashflag(const char *str_cpy, t_specf specf, size_t *count)
 {
-	char	*print_aux;
+	if (specf.flags->hash == 0)
+		return ;
+	if (*str_cpy == 'o' || *str_cpy == 'x' || *str_cpy == 'X')
+	{
+		ft_putstr_fd("0", 1);
+		if (*str_cpy == 'x' || *str_cpy == 'X')
+		{
+			ft_putchar_fd(*str_cpy, 1);
+			(*count)++;
+		}
+		(*count)++;
+	}
+}
 
+static void	ft_precision(const char *str_cpy, int precision, t_print *print)
+{
+	size_t	print_len;
+
+	print_len = ft_strlen(print->str);
 	if (precision < 0)
 		return ;
 	if (*str_cpy == 'd' || *str_cpy == 'i' || *str_cpy == 'o'
 		|| *str_cpy == 'u' || *str_cpy == 'x' || *str_cpy == 'X')
 	{
-		while (strlen(*print) < (size_t)precision)
+		while (print_len < (size_t)precision)
 		{
-			print_aux = *print;
-			if ((*str_cpy == 'd' || *str_cpy == 'i') && **print == '-')
-				*print = ft_strmjoin(*print, "0", 1);
-			else
-				*print = ft_strjoin("0", *print);
-			free(print_aux);
+			if ((*str_cpy == 'd' || *str_cpy == 'i') && *(print->str) == '-')
+			{
+				ft_putstr_fd("-", 1);
+				(print->str)++;
+			}
+			ft_putstr_fd("0", 1);
+			print_len++;
+			(print->len)++;
 		}
-		if (precision == 0 && **print == '0' && strlen(*print) == 1)
-			**print = '\0';
+		if (precision == 0 && *(print->str) == '0' && print_len == 1)
+			*(print->str) = '\0';
 	}
-	else if (*str_cpy == 's' && strlen(*print) > (size_t)precision)
-	{
-		print_aux = *print;
-		*print = ft_substr(*print, 0, precision);
-		free(print_aux);
-	}
+	else if (*str_cpy == 's' && print_len > (size_t)precision)
+		(print->str)[precision] = '\0';
 }
 
-static void	ft_width(const char *str_cpy, t_specf specf, char **print)
+static void	ft_width(const char *str_cpy, t_specf specf, t_print *print)
+{
+	int	realwidth;
+
+	realwidth = specf.width - (int)print->len;
+	if (specf.precision > 0
+		&& (*str_cpy != 'c' && *str_cpy != 'p' && *str_cpy != '%'))
+	{
+		if (specf.width > specf.precision)
+			realwidth = specf.width - specf.precision;
+		else
+			realwidth = 0;
+	}
+	if (specf.flags->zero == 0)
+	{
+		while (0 < realwidth)
+		{
+			ft_putstr_fd(" ", 1);
+			(print->len)++;
+			realwidth--;
+		}
+	}
+	else if (specf.flags->zero == 1)
+		ft_zeroflag(str_cpy, specf, print);
+}
+
+void	do_specf(const char *str_cpy, t_specf specf, t_print *print)
 {
 	char	*print_aux;
-	size_t	len;
 
-	if (*str_cpy == 'c')
-		len = 1;
-	else
-		len = strlen(*print);
-	while (len < (size_t)(specf.width))
-	{
-		print_aux = *print;
-		if (*str_cpy == 'c' && specf.flags->minus == 1)
-			*print = ft_memjoin(*print, " ", len, 1);
-		else if (*str_cpy == 'c')
-			*print = ft_memjoin(" ", *print, 1, len);
-		else if (specf.flags->zero == 1)
-			ft_zeroflag(str_cpy, specf, print);
-		else if (specf.flags->minus == 1)
-			*print = ft_strjoin(*print, " ");
-		else
-			*print = ft_strjoin(" ", *print);
-		free(print_aux);
-		len++;
-	}
-}
-
-void	do_specf(const char *str_cpy, t_specf specf, char **print)
-{
+	print_aux = print->str;
 	if (specf.precision > 0
-		&& (*str_cpy == 'd' || *str_cpy == 'i') && **print == '-')
+		&& (*str_cpy == 'd' || *str_cpy == 'i') && *(print->str) == '-')
 		specf.precision++;
+	print->len = ft_strlen(print->str);
+	if (*str_cpy == 'c')
+		print->len = 1;
+	if (specf.flags->minus == 0)
+		ft_width(str_cpy, specf, print);
+	ft_hashflag(str_cpy, specf, &(print->len));
 	ft_precision(str_cpy, specf.precision, print);
-	ft_hashflag(str_cpy, specf, print);
-	ft_width(str_cpy, specf, print);
+	if (*str_cpy == 'c')
+		ft_putchar_fd(*(print->str), 1);
+	else
+		ft_putstr_fd(print->str, 1);
+	if (specf.flags->minus == 1)
+		ft_width(str_cpy, specf, print);
+	free(print_aux);
 }

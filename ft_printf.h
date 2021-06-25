@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:37:05 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/15 10:58:28 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/25 10:16:37 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@ typedef struct s_specf
 	int		precision;
 }				t_specf;
 
+typedef struct s_print
+{
+	char	*str;
+	size_t	len;
+}				t_print;
+
+typedef union u_fbits
+{
+	double		f;
+	uint64_t	u;
+}			t_fbits;
+
 char	*ft_strrev(char *str);
 
 char	*ft_utoa_base(unsigned int nbr, char *base);
@@ -52,7 +64,7 @@ void	get_specf(char **str_cpy, t_specf *specf, va_list *arg);
 
 void	get_type(char *str, char **print, t_specf specf, va_list *arg);
 
-void	do_specf(const char *str_cpy, t_specf specf, char **print);
+void	do_specf(const char *str_cpy, t_specf specf, t_print *print);
 
 char	*ft_strmjoin(char const *s1, char const *s2, int start);
 
@@ -61,5 +73,19 @@ void	ft_putmem_fd(const char *s, int n, int fd);
 char	*ft_memjoin(const char *s1, const char *s2, size_t size1, size_t size2);
 
 int		ft_max(int a, int b);
+
+float	ft_fpower(float nb, int power);
+
+int		ft_strcmp(const char *str1, const char *str2);
+
+char	*ft_u128toa_base(__uint128_t nbr, char *base);
+
+char	*ft_dpointtoa_base(double nbr, char *base, size_t precision);
+
+char	*ft_strcjoin(char const *s1, char c);
+
+char	*ft_ftoa_base(double f, int n, char *base);
+
+char	*ft_strxdup(char *src, char x);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 18:29:28 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/13 22:33:48 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/25 14:21:28 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ char	*ft_putcstr_fd(char *s, char c, int fd, int *n)
 		s++;
 		(*n)++;
 	}
+	if (*s == c)
+		s++;
 	return (s);
 }
