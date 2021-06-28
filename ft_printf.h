@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:37:05 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/25 16:22:38 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/28 10:56:02 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,7 @@ char	*ft_strxdup(char *src, char x);
 size_t	ft_strxlen(char *src, char x);
 
 int		ft_min(int a, int b);
+
+void	ft_bytestoprint(const char *str, t_specf specf, t_print *print);
 
 #endif
