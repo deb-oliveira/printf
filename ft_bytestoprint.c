@@ -6,14 +6,14 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 10:55:29 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/28 14:47:07 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/28 14:48:45 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-static void	is_numtype(char *str)
+static int	is_numtype(char *str)
 {
 	if ((*str == 'd' || *str == 'i' || *str == 'o'
 			|| *str == 'u' || *str == 'x' || *str == 'X'))
