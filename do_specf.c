@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/28 08:25:48 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/28 10:29:22 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ static void	ft_precision(const char *str_cpy, int precision, t_print *print)
 	if (precision < 0
 		|| *str_cpy == 'c' || *str_cpy == 'p' || *str_cpy == '%')
 		return ;
-	print_len = ft_strxlen(print->str, '-');
 	if (*str_cpy == 'd' || *str_cpy == 'i' || *str_cpy == 'o'
 		|| *str_cpy == 'u' || *str_cpy == 'x' || *str_cpy == 'X')
 	{
+		print_len = ft_strxlen(print->str, '-');
 		while (print_len < (size_t)precision)
 		{
 			if ((*str_cpy == 'd' || *str_cpy == 'i') && *(print->str) == '-')
@@ -80,7 +80,7 @@ static void	ft_precision(const char *str_cpy, int precision, t_print *print)
 		if (precision == 0 && *(print->str) == '0' && print_len == 1)
 			*(print->str) = '\0';
 	}
-	else if (*str_cpy == 's' && print_len > (size_t)precision)
+	else if (*str_cpy == 's' &&  ft_strlen(print->str) > (size_t)precision)
 		(print->str)[precision] = '\0';
 }
 
@@ -94,7 +94,7 @@ static void	ft_width(const char *str_cpy, t_specf specf, t_print *print)
 			(print->len)++;
 		}
 	}
-	else if (specf.flags->zero == 1)
+	else
 		ft_zeroflag(str_cpy, specf, print);
 }
 
