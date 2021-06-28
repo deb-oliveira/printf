@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/28 08:08:13 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/28 08:25:48 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	do_specf(const char *str_cpy, t_specf specf, t_print *print)
 		print->len = 0;
 	else if (specf.precision >= 0 && (*str_cpy == 'd' || *str_cpy == 'i' || *str_cpy == 'o'
 		|| *str_cpy == 'u' || *str_cpy == 'x' || *str_cpy == 'X')
-		&& (size_t)specf.precision > ft_strlen(print->str))
+		&& (size_t)specf.precision >= ft_strlen(print->str))
 			print->len = specf.precision + (*(print->str) == '-');
 	else if (*str_cpy == 'c')
 		print->len = 1;
