@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/28 08:01:01 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/28 08:08:13 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static void	ft_precision(const char *str_cpy, int precision, t_print *print)
 			}
 			ft_putstr_fd("0", 1);
 			print_len++;
-			(print->len)++;
 		}
 		if (precision == 0 && *(print->str) == '0' && print_len == 1)
 			*(print->str) = '\0';
