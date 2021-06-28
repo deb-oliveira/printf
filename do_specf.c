@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/25 17:10:49 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/28 07:50:50 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,32 +87,12 @@ static void	ft_precision(const char *str_cpy, int precision, t_print *print)
 
 static void	ft_width(const char *str_cpy, t_specf specf, t_print *print)
 {
-	int	realwidth;
-
-	realwidth = specf.width - (int)print->len;
-	if (specf.precision >= 0
-		&& (*str_cpy == 'd' || *str_cpy == 'i' || *str_cpy == 'o'
-			|| *str_cpy == 'u' || *str_cpy == 'x' || *str_cpy == 'X'))
-	{
-		if (specf.width > ft_max(specf.precision, ft_strlen(print->str)))
-			realwidth = specf.width - ft_max(specf.precision, ft_strlen(print->str));
-		else
-			realwidth = 0;
-	}
-	if (specf.precision >= 0 && *str_cpy == 's')
-	{
-		if (specf.width > ft_min(specf.precision, ft_strlen(print->str)))
-			realwidth = specf.width - ft_min(specf.precision, ft_strlen(print->str));
-		else
-			realwidth = 0;
-	}
 	if (specf.flags->zero == 0)
 	{
-		while (0 < realwidth)
+		while (print->len < (size_t)specf.width)
 		{
 			ft_putstr_fd(" ", 1);
 			(print->len)++;
-			realwidth--;
 		}
 	}
 	else if (specf.flags->zero == 1)
@@ -131,6 +111,10 @@ void	do_specf(const char *str_cpy, t_specf specf, t_print *print)
 		|| *str_cpy == 'u' || *str_cpy == 'x' || *str_cpy == 'X') &&
 		(specf.precision == 0 && *(print->str) == '0' && ft_strlen(print->str) == 1))
 		print->len = 0;
+	else if ((*str_cpy == 'd' || *str_cpy == 'i' || *str_cpy == 'o'
+		|| *str_cpy == 'u' || *str_cpy == 'x' || *str_cpy == 'X')
+		&& (size_t)specf.precision > ft_strlen(print->str))
+			print->len = specf.precision + (*(print->str) == '-');
 	else if (*str_cpy == 'c')
 		print->len = 1;
 	else
