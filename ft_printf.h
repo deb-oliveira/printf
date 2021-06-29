@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:37:05 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/29 08:18:24 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/29 17:09:46 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef union u_fbits
 	uint64_t	u;
 }			t_fbits;
 
-char	*ft_strrev(char *str);
+void	ft_strrev(char **str);
 
 char	*ft_utoa_base(unsigned int nbr, char *base);
 
@@ -78,7 +78,7 @@ float	ft_fpower(float nb, int power);
 
 int		ft_strcmp(const char *str1, const char *str2);
 
-char	*ft_u128toa_base(__uint128_t nbr, char *base);
+char	*ft_128toa_base(__int128_t nbr, char *base);
 
 char	*ft_dpointtoa_base(double nbr, char *base, size_t precision);
 

@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 14:43:29 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/29 08:05:48 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/29 16:52:14 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,14 @@ char	*ft_ftoa_base(double f, int n, char *base)
 	char		*fnum;
 	char		*fpoint;
 	char		*fstr;
-	__uint128_t	num;
+	__int128_t	num;
 
 	fstr = NULL;
 	num = f;
 	get_exceptions(f, &fstr);
 	if (fstr)
 		return (fstr);
-	fnum = ft_u128toa_base(num, base);
+	fnum = ft_128toa_base(num, base);
 	fpoint = ft_dpointtoa_base((f - (double)num), base, n);
 	fstr = get_strfloat (&fnum, fpoint);
 	return (fstr);

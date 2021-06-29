@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 16:30:35 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/06/11 20:00:43 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/29 17:39:23 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ char	*ft_utoa_base(unsigned int nbr, char *base)
 		free(str_aux);
 		nbr = nbr / size;
 	}
-	str = ft_strrev(str);
+	ft_strrev(&str);
 	return (str);
 }
