@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/29 16:34:05 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/29 17:49:44 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void	ft_zeroflag(const char *str, t_specf specf, t_print *print)
 	{
 		while (print->len < (size_t)specf.width)
 		{
-			if ((*str == 'd' || *str == 'i') && *(print->str) == '-')
+			if ((*str == 'f' || *str == 'd' || *str == 'i')
+				&& *(print->str) == '-')
 			{
 				ft_putstr_fd("-", 1);
 				(print->str)++;
