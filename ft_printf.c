@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 14:59:47 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/25 14:21:59 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/29 08:18:35 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_printf(const char *str, ...)
 			*(va_arg(arg, int *)) = count;
 		else
 		{
-			get_type(str_cpy, &(print.str), specf, &arg);
+			get_type(str_cpy, &(print.str), &specf, &arg);
 			do_specf(str_cpy, specf, &print);
 			count += print.len;
 		}

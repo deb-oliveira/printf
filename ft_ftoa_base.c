@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 14:43:29 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/23 18:49:02 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/29 08:05:48 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char	*get_ieee754 (double f)
 	return (fbits);
 }
 
-static void	*get_exceptions(double f, char **fstr)
+static void	get_exceptions(double f, char **fstr)
 {
 	char	*fbits;
 	char	*expoent;
@@ -56,7 +56,7 @@ static void	*get_exceptions(double f, char **fstr)
 	free(mantissa);
 }
 
-static void	*get_round(char **fnum)
+static void	get_round(char **fnum)
 {
 	char	*fnum_aux;
 	size_t	fnum_len;
@@ -77,7 +77,7 @@ static void	*get_round(char **fnum)
 		(*fnum)[fnum_len - 1] = (*fnum)[fnum_len - 1] + 1;
 }
 
-static char	*get_float(char **fnum, char *fpoint)
+static char	*get_strfloat(char **fnum, char *fpoint)
 {
 	char	*fnum_aux;
 	char	*fpoint_aux;
@@ -113,6 +113,6 @@ char	*ft_ftoa_base(double f, int n, char *base)
 		return (fstr);
 	fnum = ft_u128toa_base(num, base);
 	fpoint = ft_dpointtoa_base((f - (double)num), base, n);
-	fstr = get_float (&fnum, fpoint);
+	fstr = get_strfloat (&fnum, fpoint);
 	return (fstr);
 }

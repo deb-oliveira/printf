@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:32:08 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/25 14:16:00 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/29 08:17:31 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,25 @@ static void	get_ptrtype(char *str, char **print, t_specf specf, va_list *arg)
 	}
 }
 
-void	get_type(char *str, char **print, t_specf specf, va_list *arg)
+static void	get_floattype(char *str, char **print, t_specf *specf, va_list *arg)
+{
+	if (*str == 'f')
+	{
+		if (specf->precision >= 0)
+			*print = ft_ftoa_base(va_arg(*arg, double), specf->precision, "0123456789");
+		else
+			*print = ft_ftoa_base(va_arg(*arg, double), 6, "0123456789");
+		if (specf->precision == 0)
+			(*print)[ft_strchr(*print, '.') - *print] = '\0';
+		else if (specf->precision < 0)
+			specf->precision = 6;
+	}
+}
+
+void	get_type(char *str, char **print, t_specf *specf, va_list *arg)
 {
 	get_numtype(str, print, arg);
 	get_strtype(str, print, arg);
-	get_ptrtype(str, print, specf, arg);
+	get_ptrtype(str, print, *specf, arg);
+	get_floattype(str, print, specf, arg);
 }

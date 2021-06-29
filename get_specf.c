@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:05:09 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/14 12:44:51 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/29 16:32:15 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ static void	get_flags(char **str, t_specf *specf)
 		specf->flags->plus = 0;
 }
 
-static void	get_width(char **str_cpy, t_specf *specf, va_list *arg)
+static void	get_width(char **str, t_specf *specf, va_list *arg)
 {
 	specf->width = 0;
-	if (ft_isdigit(**str_cpy))
+	if (ft_isdigit(**str))
 	{
-		specf->width = ft_atoi(*str_cpy);
-		while (ft_isdigit(**str_cpy))
-			(*str_cpy)++;
+		specf->width = ft_atoi(*str);
+		while (ft_isdigit(**str))
+			(*str)++;
 	}
-	else if (**str_cpy == '*')
+	else if (**str == '*')
 	{
 		specf->width = va_arg((*arg), int);
 		if (specf->width < 0)
@@ -58,34 +58,35 @@ static void	get_width(char **str_cpy, t_specf *specf, va_list *arg)
 			if (specf->flags->zero == 1)
 				specf->flags->zero = 0;
 		}
-		(*str_cpy)++;
+		(*str)++;
 	}
 }
 
-static void	get_precision(char **str_cpy, t_specf *specf, va_list *arg)
+static void	get_precision(char **str, t_specf *specf, va_list *arg)
 {
 	specf->precision = -1;
-	if (**str_cpy != '.')
+	if (**str != '.')
 		return ;
-	(*str_cpy)++;
-	if (**str_cpy == '*')
+	(*str)++;
+	if (**str == '*')
 	{
 		specf->precision = va_arg(*arg, int);
-		(*str_cpy)++;
+		(*str)++;
 	}
 	else
 	{
-		specf->precision = ft_atoi(*str_cpy);
-		while (ft_isdigit(**str_cpy))
-			(*str_cpy)++;
+		specf->precision = ft_atoi(*str);
+		while (ft_isdigit(**str))
+			(*str)++;
 	}
-	if (specf->flags->zero == 1 && specf->precision > -1 && **str_cpy != '%')
+	if (specf->flags->zero == 1 && specf->precision > -1 && **str != '%'
+		&& **str != 'f')
 		specf->flags->zero = 0;
 }
 
-void	get_specf(char **str_cpy, t_specf *specf, va_list *arg)
+void	get_specf(char **str, t_specf *specf, va_list *arg)
 {
-	get_flags(str_cpy, specf);
-	get_width(str_cpy, specf, arg);
-	get_precision(str_cpy, specf, arg);
+	get_flags(str, specf);
+	get_width(str, specf, arg);
+	get_precision(str, specf, arg);
 }
