@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 14:43:29 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 08:52:28 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 08:58:30 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,18 +119,24 @@ char	*ft_ftoa_base(double f, int n, char *base)
 		sig = -1;
 		fnum = ft_u128toa_base(-num, base);
 		fpoint = ft_upointtoa_base(-f + (double)num, base, n);
+		if (n == 0 && *fpoint == '0' && num % 2 != 0 && -f + (double)num >= 0.5)
+		{
+			free(fpoint);
+			fpoint = strdup ("1.0");
+		}
 	}
 	else
 	{
 		sig = 1;
 		fpoint = ft_upointtoa_base((f - (double)num), base, n);
 		fnum = ft_u128toa_base(num, base);
+		if (n == 0 && *fpoint == '0' && num % 2 != 0 && f - (double)num >= 0.5)
+		{
+			free(fpoint);
+			fpoint = strdup ("1.0");
+		}
 	}
-	if (n == 0 && *fpoint == '0' && num % 2 != 0 )
-	{
-		free(fpoint);
-		fpoint = strdup ("1.0");
-	}
+
 	fstr = get_strfloat (&fnum, fpoint, sig);
 	return (fstr);
 }
