@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dpointtoa_base.c                                :+:      :+:    :+:   */
+/*   ft_upointtoa_base.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 14:48:34 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 07:33:31 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 08:39:48 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,10 @@ static void	get_lastdigit(double f, char *base, size_t base_size, char **str)
 		get_round(str, str_len);
 }
 
-static char	*get_exceptions(double f, char *base, size_t precision, size_t size)
+static char	*get_exceptions(double f, char *base, size_t precision)
 {
 	char	*str;
 
-	size = ft_strlen(base);
 	if (f == 0)
 	{
 		str = ft_strcjoin("", base[0]);
@@ -69,7 +68,7 @@ static char	*get_exceptions(double f, char *base, size_t precision, size_t size)
 	}
 	if (precision == 0)
 	{
-		if (base[(int)(f * 10) % size] < '5')
+		if (f * 10 <= 5.0)
 			str = ft_strdup("0");
 		else
 			str = ft_strdup("1.0");
@@ -86,7 +85,7 @@ char	*ft_upointtoa_base(double f, char *base, size_t precision)
 	size_t			count;
 
 	size = ft_strlen(base);
-	str = get_exceptions(f, base, precision, size);
+	str = get_exceptions(f, base, precision);
 	if (str)
 		return (str);
 	str = ft_calloc(1, sizeof(char));
