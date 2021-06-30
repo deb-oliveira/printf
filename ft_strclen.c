@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putcstr_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strclen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 18:29:28 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 10:52:42 by doliveira        ###   ########.fr       */
+/*   Created: 2021/06/30 10:41:16 by doliveira         #+#    #+#             */
+/*   Updated: 2021/06/30 11:00:11 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-char	*ft_putcstr_fd(char *s, char c, int fd, int *n)
+size_t	ft_strclen(const char *str, char c)
 {
-	if (!s)
-		return (NULL);
-	while (*s && *s != c)
-	{
-		write(fd, s, 1);
-		s++;
-		(*n)++;
-	}
-	if (*s == c)
-		s++;
-	return (s);
+	size_t	size;
+
+	size = 0;
+	while (str[size] != '\0' && str[size] != c)
+		size++;
+	return (size);
 }

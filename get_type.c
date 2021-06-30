@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:32:08 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 08:20:44 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 14:35:01 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,14 @@ static void	get_floattype(char *str, char **print, t_specf *specf, va_list *arg)
 		else if (specf->precision == 0)
 			(*print)[ft_strchr(*print, '.') - *print] = '\0';
 
+	}
+	if (*str == 'e')
+	{
+		if (specf->precision < 0)
+			specf->precision = 6;
+		*print = ft_etoa_base(va_arg(*arg, double), specf->precision, "0123456789");
+		if (!ft_isdigit(**print) && (**print != '-' || (**print == '-' && !ft_isdigit((*print)[1]))))
+			specf->flags->zero = 0;
 	}
 }
 

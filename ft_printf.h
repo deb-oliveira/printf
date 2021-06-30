@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:37:05 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 07:33:49 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 11:04:49 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,11 @@ void	ft_bytestoprint(const char *str, t_specf specf, t_print *print);
 size_t	ft_strsublen(const char *str, char c);
 
 char	*ft_3strjoin(char const *s1, char const *s2, char const *s3);
+
+char	*ft_etoa_base(double f, int n, char *base);
+
+size_t	ft_strclen(const char *str, char c);
+
+size_t	ft_strclenc(const char *str, char c1, char c2);
 
 #endif

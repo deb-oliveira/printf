@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:05:09 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/29 16:32:15 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 14:36:41 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	get_precision(char **str, t_specf *specf, va_list *arg)
 			(*str)++;
 	}
 	if (specf->flags->zero == 1 && specf->precision > -1 && **str != '%'
-		&& **str != 'f')
+		&& **str != 'f' && **str != 'e')
 		specf->flags->zero = 0;
 }
 

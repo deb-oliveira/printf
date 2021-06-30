@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 08:22:23 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 14:31:31 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 static void	ft_zeroflag(const char *str, t_specf specf, t_print *print)
 {
-	if ((*str == 'd' || *str == 'i' || *str == 'o'
+	if ((*str == 'd' || *str == 'i' || *str == 'o' || *str == 'e'
 			|| *str == 'u' || *str == 'x' || *str == 'X' || *str == 'f'))
 	{
 		while (print->len < (size_t)specf.width)
 		{
-			if ((*str == 'f' || *str == 'd' || *str == 'i')
+			if ((*str == 'f' || *str == 'e' || *str == 'd' || *str == 'i')
 				&& *(print->str) == '-')
 			{
 				ft_putstr_fd("-", 1);
@@ -62,11 +62,13 @@ static void	ft_precision(const char *str, int precision, t_print *print)
 
 	if (precision < 0)
 		return ;
-	if (*str == 'd' || *str == 'i' || *str == 'o'
+	if (*str == 'd' || *str == 'i' || *str == 'o' || *str == 'e'
 		|| *str == 'u' || *str == 'x' || *str == 'X' || *str == 'f')
 	{
-		if (*str != 'f')
+		if (*str != 'f' && *str != 'e')
 			print_len = ft_strxlen(print->str, '-');
+		else if (*str == 'e')
+			print_len = ft_strclenc(print->str, '.', 'e') - 1;
 		else
 			print_len = ft_strsublen(print->str, '.');
 		while (print_len < (size_t)precision)
@@ -100,6 +102,20 @@ static void	ft_width(const char *str, t_specf specf, t_print *print)
 		ft_zeroflag(str, specf, print);
 }
 
+static char	*ft_xputcstr_fd(char *s, char c, int fd)
+{
+	if (!s)
+		return (NULL);
+	while (*s && *s != c)
+	{
+		write(fd, s, 1);
+		s++;
+	}
+	if (*s == c)
+		s++;
+	return (s);
+}
+
 void	do_specf(const char *str, t_specf specf, t_print *print)
 {
 	char	*print_aux;
@@ -109,14 +125,21 @@ void	do_specf(const char *str, t_specf specf, t_print *print)
 	if (specf.flags->minus == 0)
 		ft_width(str, specf, print);
 	ft_hashflag(str, specf, &(print->len));
-	if (*str != 'f')
+	if (*str != 'f' && *str != 'e')
 		ft_precision(str, specf.precision, print);
 	if (*str == 'c')
 		ft_putchar_fd(*(print->str), 1);
+	else if (*str == 'e')
+		ft_xputcstr_fd(print->str, 'e', 1);	
 	else
 		ft_putstr_fd(print->str, 1);
 	if (*str == 'f' && (ft_isdigit(*(print->str)) || (*(print->str) == '-' && ft_isdigit((print->str)[1]))))
 		ft_precision(str, specf.precision, print);
+	else if (*str == 'e')
+	{
+		ft_precision(str, specf.precision, print);
+		ft_putstr_fd(ft_strchr(print->str, 'e'), 1);
+	}
 	if (specf.flags->minus == 1)
 		ft_width(str, specf, print);
 	free(print_aux);

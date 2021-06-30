@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 10:55:29 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 08:18:26 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 11:19:24 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	ft_bytestoprint(const char *str, t_specf specf, t_print *print)
 		&& (ft_isdigit(*(print->str)) || ((print->str)[0] == '-' && ft_isdigit((print->str)[1]))))
 		print->len = specf.precision
 			+ (ft_strchr(print->str, '.') - print->str + 1);
+	else if (specf.precision > 0 && *str == 'e'
+		&& (ft_isdigit(*(print->str)) || ((print->str)[0] == '-' && ft_isdigit((print->str)[1]))))
+		print->len = specf.precision + ft_strclen(print->str, '.') + 1
+			+ ft_strclenc(print->str, 'e', '\0');
 	else if (specf.precision == 0 && is_numtype(str) && *(print->str) == '0'
 		&& ft_strlen(print->str) == 1)
 		print->len = 0;
