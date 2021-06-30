@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 14:43:29 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/29 16:52:14 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 07:35:37 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ static void	get_round(char **fnum)
 		(*fnum)[fnum_len - 1] = (*fnum)[fnum_len - 1] + 1;
 }
 
-static char	*get_strfloat(char **fnum, char *fpoint)
+static char	*get_strfloat(char **fnum, char *fpoint, int sig)
 {
-	char	*fnum_aux;
 	char	*fpoint_aux;
 	char	*fstr;
+	char	*fstr_aux;
 
 	fpoint_aux = fpoint;
 	if (ft_strchr(fpoint, '.'))
@@ -89,13 +89,15 @@ static char	*get_strfloat(char **fnum, char *fpoint)
 		get_round(fnum);
 		fpoint = fpoint + 2;
 	}
-	fnum_aux = *fnum;
-	*fnum = ft_strjoin(*fnum, ".");
-	free(fnum_aux);
-	fnum_aux = *fnum;
-	fstr = ft_strjoin(*fnum, fpoint);
-	free(fnum_aux);
+	fstr = ft_3strjoin(*fnum, ".", fpoint);
+	free(*fnum);
 	free(fpoint_aux);
+	if (sig == -1)
+	{
+		fstr_aux = fstr;
+		fstr = ft_strjoin("-", fstr);
+		free(fstr_aux);
+	}
 	return (fstr);
 }
 
@@ -104,6 +106,7 @@ char	*ft_ftoa_base(double f, int n, char *base)
 	char		*fnum;
 	char		*fpoint;
 	char		*fstr;
+	int			sig;
 	__int128_t	num;
 
 	fstr = NULL;
@@ -111,8 +114,18 @@ char	*ft_ftoa_base(double f, int n, char *base)
 	get_exceptions(f, &fstr);
 	if (fstr)
 		return (fstr);
-	fnum = ft_128toa_base(num, base);
-	fpoint = ft_dpointtoa_base((f - (double)num), base, n);
-	fstr = get_strfloat (&fnum, fpoint);
+	if (f < 0.0)
+	{
+		sig = -1;
+		fnum = ft_u128toa_base(-num, base);
+		fpoint = ft_upointtoa_base(-f + (double)num, base, n);
+	}
+	else
+	{
+		sig = 1;
+		fpoint = ft_upointtoa_base((f - (double)num), base, n);
+		fnum = ft_u128toa_base(num, base);
+	}
+	fstr = get_strfloat (&fnum, fpoint, sig);
 	return (fstr);
 }

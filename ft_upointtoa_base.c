@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 14:48:34 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/28 17:30:36 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 07:33:31 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static char	*get_exceptions(double f, char *base, size_t precision, size_t size)
 	return (NULL);
 }
 
-char	*ft_dpointtoa_base(double f, char *base, size_t precision)
+char	*ft_upointtoa_base(double f, char *base, size_t precision)
 {
 	size_t			size;
 	char			*str;

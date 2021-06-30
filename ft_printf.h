@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:37:05 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/29 17:09:46 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 07:33:49 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ float	ft_fpower(float nb, int power);
 
 int		ft_strcmp(const char *str1, const char *str2);
 
-char	*ft_128toa_base(__int128_t nbr, char *base);
+char	*ft_u128toa_base(__uint128_t nbr, char *base);
 
-char	*ft_dpointtoa_base(double nbr, char *base, size_t precision);
+char	*ft_upointtoa_base(double nbr, char *base, size_t precision);
 
 char	*ft_strcjoin(char const *s1, char c);
 
@@ -95,5 +95,7 @@ int		ft_min(int a, int b);
 void	ft_bytestoprint(const char *str, t_specf specf, t_print *print);
 
 size_t	ft_strsublen(const char *str, char c);
+
+char	*ft_3strjoin(char const *s1, char const *s2, char const *s3);
 
 #endif
