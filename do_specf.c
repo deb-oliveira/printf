@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/29 17:49:44 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 07:55:41 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	do_specf(const char *str, t_specf specf, t_print *print)
 		ft_putchar_fd(*(print->str), 1);
 	else
 		ft_putstr_fd(print->str, 1);
-	if (*str == 'f')
+	if (*str == 'f' && (ft_isdigit(*(print->str)) || *(print->str) == '-'))
 		ft_precision(str, specf.precision, print);
 	if (specf.flags->minus == 1)
 		ft_width(str, specf, print);
