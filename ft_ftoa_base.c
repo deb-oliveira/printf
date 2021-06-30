@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 14:43:29 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 08:58:30 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 18:02:44 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static char	*get_strfloat(char **fnum, char *fpoint, int sig)
 	return (fstr);
 }
 
-char	*ft_ftoa_base(double f, int n, char *base)
+char	*ft_ftoa_base(long double f, int n, char *base)
 {
 	char		*fnum;
 	char		*fpoint;

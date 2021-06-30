@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:37:05 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 11:04:49 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 18:04:10 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,11 @@ int		ft_strcmp(const char *str1, const char *str2);
 
 char	*ft_u128toa_base(__uint128_t nbr, char *base);
 
-char	*ft_upointtoa_base(double nbr, char *base, size_t precision);
+char	*ft_upointtoa_base(long double nbr, char *base, size_t precision);
 
 char	*ft_strcjoin(char const *s1, char c);
 
-char	*ft_ftoa_base(double f, int n, char *base);
+char	*ft_ftoa_base(long double f, int n, char *base);
 
 char	*ft_strxdup(char *src, char x);
 
@@ -98,7 +98,7 @@ size_t	ft_strsublen(const char *str, char c);
 
 char	*ft_3strjoin(char const *s1, char const *s2, char const *s3);
 
-char	*ft_etoa_base(double f, int n, char *base);
+char	*ft_etoa_base(long double f, int n, char *base);
 
 size_t	ft_strclen(const char *str, char c);
 

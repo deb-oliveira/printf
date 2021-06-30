@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:32:51 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 14:24:47 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 18:03:59 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	add_e(char **estr, int n, int exp, int sig)
 	}
 }
 
-char	*ft_etoa_base(double f, int n, char *base)
+char	*ft_etoa_base(long double f, int n, char *base)
 {
 	char	*fstr;
 	char	*estr;

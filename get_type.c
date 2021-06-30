@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:32:08 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 14:35:01 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/06/30 18:03:50 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	get_floattype(char *str, char **print, t_specf *specf, va_list *arg)
 	{
 		if (specf->precision < 0)
 			specf->precision = 6;
-		*print = ft_ftoa_base(va_arg(*arg, double), specf->precision, "0123456789");
+		*print = ft_ftoa_base((long double)va_arg(*arg, double), specf->precision, "0123456789");
 		if (!ft_isdigit(**print) && (**print != '-' || (**print == '-' && !ft_isdigit((*print)[1]))))
 			specf->flags->zero = 0;
 		else if (specf->precision == 0)
@@ -82,7 +82,7 @@ static void	get_floattype(char *str, char **print, t_specf *specf, va_list *arg)
 	{
 		if (specf->precision < 0)
 			specf->precision = 6;
-		*print = ft_etoa_base(va_arg(*arg, double), specf->precision, "0123456789");
+		*print = ft_etoa_base((long double)va_arg(*arg, double), specf->precision, "0123456789");
 		if (!ft_isdigit(**print) && (**print != '-' || (**print == '-' && !ft_isdigit((*print)[1]))))
 			specf->flags->zero = 0;
 	}
