@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_etoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:32:51 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/01 07:12:32 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/07/01 11:17:33 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,6 @@ char	*ft_etoa_base(long double f, int n, char *base)
 		fstr++;
 		sig = -1;
 	}
-	//if (*fstr == '0')
-	//	ft_substr(fstr, , )
 	count += ft_strchr(fstr, '.') - fstr;
 	if (n == 0)
 		fstr[ft_strchr(fstr, '.') - fstr] = '\0';
@@ -119,8 +117,14 @@ char	*ft_etoa_base(long double f, int n, char *base)
 	}
 	estr = ft_strxdup(fstr, '.');
 	estr_aux = estr;
-	estr = ft_substr(estr, 0, n + 2);
+	estr = ft_substr(estr, 0, n + 3);
 	free(estr_aux);
+	if (ft_strlen(estr) > (size_t)n + 2)
+	{
+		if (estr[ft_strlen(estr) - 2] == '5'  && estr[ft_strlen(estr) - 1] != '0')
+			estr[ft_strlen(estr) - 2] = '6';
+		estr[ft_strlen(estr) - 1] = '\0';
+	}
 	if (ft_strlen(estr) > (size_t)n + 1)
 		get_round(&estr);
 	add_e(&estr, n, count, sig);

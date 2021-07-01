@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_specf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 14:31:31 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/07/01 13:52:02 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 static void	ft_zeroflag(const char *str, t_specf specf, t_print *print)
 {
 	if ((*str == 'd' || *str == 'i' || *str == 'o' || *str == 'e'
-			|| *str == 'u' || *str == 'x' || *str == 'X' || *str == 'f'))
+			|| *str == 'u' || *str == 'x' || *str == 'X' || *str == 'f'
+			|| *str == 'g'))
 	{
 		while (print->len < (size_t)specf.width)
 		{
-			if ((*str == 'f' || *str == 'e' || *str == 'd' || *str == 'i')
+			if ((*str == 'g' || *str == 'f' || *str == 'e' || *str == 'd' || *str == 'i')
 				&& *(print->str) == '-')
 			{
 				ft_putstr_fd("-", 1);

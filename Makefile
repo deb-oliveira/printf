@@ -7,7 +7,8 @@ FILES 		= 	ft_utoa_base.c ft_strrev.c ft_itoa_base.c \
 				ft_u128toa_base.c ft_upointtoa_base.c ft_strcjoin.c \
 				ft_strxdup.c ft_strxlen.c ft_min.c ft_bytestoprint.c \
 				ft_ftoa_base.c ft_strsublen.c ft_3strjoin.c \
-				ft_etoa_base.c ft_strclen.c ft_strclenc.c
+				ft_etoa_base.c ft_strclen.c ft_strclenc.c \
+				ft_swap.c ft_gtoa_base.c 
 #FILES_BONUS = 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
 				ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
 				ft_lstclear.c ft_lstiter.c ft_lstmap.c 

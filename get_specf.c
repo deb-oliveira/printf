@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_specf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:05:09 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 14:36:41 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/07/01 13:52:59 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	get_precision(char **str, t_specf *specf, va_list *arg)
 			(*str)++;
 	}
 	if (specf->flags->zero == 1 && specf->precision > -1 && **str != '%'
-		&& **str != 'f' && **str != 'e')
+		&& **str != 'g' && **str != 'f' && **str != 'e')
 		specf->flags->zero = 0;
 }
 

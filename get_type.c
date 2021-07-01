@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_type.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:32:08 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 18:03:50 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/07/01 11:20:18 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ static void	get_ptrtype(char *str, char **print, t_specf specf, va_list *arg)
 
 static void	get_floattype(char *str, char **print, t_specf *specf, va_list *arg)
 {
+	if ((*str == 'e' || *str == 'f' || *str == 'g') && specf->precision < 0)
+		specf->precision = 6;
 	if (*str == 'f')
 	{
-		if (specf->precision < 0)
-			specf->precision = 6;
 		*print = ft_ftoa_base((long double)va_arg(*arg, double), specf->precision, "0123456789");
 		if (!ft_isdigit(**print) && (**print != '-' || (**print == '-' && !ft_isdigit((*print)[1]))))
 			specf->flags->zero = 0;
@@ -78,11 +78,17 @@ static void	get_floattype(char *str, char **print, t_specf *specf, va_list *arg)
 			(*print)[ft_strchr(*print, '.') - *print] = '\0';
 
 	}
-	if (*str == 'e')
+	else if (*str == 'e')
 	{
-		if (specf->precision < 0)
-			specf->precision = 6;
 		*print = ft_etoa_base((long double)va_arg(*arg, double), specf->precision, "0123456789");
+		if (!ft_isdigit(**print) && (**print != '-' || (**print == '-' && !ft_isdigit((*print)[1]))))
+			specf->flags->zero = 0;
+	}
+	else if (*str == 'g')
+	{
+		if (specf->precision == 0)
+			specf->precision = 1;
+		*print = ft_gtoa_base((long double)va_arg(*arg, double), specf->precision, "0123456789");
 		if (!ft_isdigit(**print) && (**print != '-' || (**print == '-' && !ft_isdigit((*print)[1]))))
 			specf->flags->zero = 0;
 	}

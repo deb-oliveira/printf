@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:37:05 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 18:04:10 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/07/01 11:20:31 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,7 @@ size_t	ft_strclen(const char *str, char c);
 
 size_t	ft_strclenc(const char *str, char c1, char c2);
 
+void	ft_swap(char *a, char *b);
+
+char	*ft_gtoa_base(long double f, int n, char *base);
 #endif
