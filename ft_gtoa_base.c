@@ -20,7 +20,7 @@ void	get_zeros_and_point_out(char **gstr)
 	char	*gstr_aux;
 
 	idx = ft_strclen(*gstr, 'e') - 1;
-	if (idx == 0 || ((*gstr)[idx] != '0' && (*gstr)[idx] != '.'))
+	if (idx == 0 || !ft_strchr(*gstr, '.') || ((*gstr)[idx] != '0' && (*gstr)[idx] != '.'))
 		return	;
 	else
 	{
@@ -40,13 +40,15 @@ char	*ft_gtoa_base(long double f, int n, char *base)
 	int		idx;
 
 	gstr = ft_etoa_base(f, n - 1, base);
+	if (!ft_isdigit(*gstr) && (*gstr != '-' || (*gstr == '-' && !ft_isdigit(gstr[1]))))
+		return(gstr);
 	exp = ft_atoi(ft_strchr(gstr, 'e') + 1);
 	if (exp < -4 || exp >= n)
 	{
 		get_zeros_and_point_out(&gstr);
 		return (gstr);
 	}
-	idx = 0;
+	idx = (*gstr == '-');
 	while (exp-- > 0 && ++idx)
 		ft_swap(&gstr[idx], &gstr[idx + 1]);
 	while (++exp < 0)
