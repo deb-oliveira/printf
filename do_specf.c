@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/01 13:52:02 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/01 15:02:23 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,15 @@ static void	ft_zeroflag(const char *str, t_specf specf, t_print *print)
 	}
 }
 
-static void	ft_hashflag(const char *str, t_specf specf, size_t *count)
+static void	ft_hashflag(const char *str, t_specf specf, t_print *print)
 {
 	if (specf.flags->hash == 0)
 		return ;
-	if (*str == 'o' || *str == 'x' || *str == 'X')
+	if ((*str == 'o' || *str == 'x' || *str == 'X') && *(print->str) != '0')
 	{
 		ft_putstr_fd("0", 1);
 		if (*str == 'x' || *str == 'X')
-		{
 			ft_putchar_fd(*str, 1);
-			(*count)++;
-		}
-		(*count)++;
 	}
 }
 
@@ -125,7 +121,7 @@ void	do_specf(const char *str, t_specf specf, t_print *print)
 	ft_bytestoprint(str, specf, print);
 	if (specf.flags->minus == 0)
 		ft_width(str, specf, print);
-	ft_hashflag(str, specf, &(print->len));
+	ft_hashflag(str, specf, print);
 	if (*str != 'f' && *str != 'e')
 		ft_precision(str, specf.precision, print);
 	if (*str == 'c')

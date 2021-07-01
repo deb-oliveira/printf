@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bytestoprint.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 10:55:29 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 11:19:24 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/07/01 14:57:31 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,9 @@ void	ft_bytestoprint(const char *str, t_specf specf, t_print *print)
 		print->len = 1;
 	else
 		print->len = ft_strlen(print->str);
+	if (specf.flags->hash == 1)
+	{
+		if (*(print->str) != '0')
+			print->len += 2 * (*str == 'x' || *str == 'X') + (*str == 'o');
+	}
 }
