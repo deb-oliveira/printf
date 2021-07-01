@@ -6,7 +6,7 @@
 /*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:32:51 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 18:03:59 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/07/01 07:12:32 by doliveira        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ static void	add_e(char **estr, int n, int exp, int sig)
 		free(estr_aux);
 	}
 	estr_aux = *estr;
-	if (0 <= exp && exp <= 9)
+	if (0 < exp && exp <= 9)
 		*estr = ft_strjoin(*estr, "e+0");
 	else if (0 < exp)
 		*estr = ft_strjoin(*estr, "e+");
-	else if (-9 < exp && exp < 0)
+	else if (-9 < exp && exp <= 0)
 		*estr = ft_strjoin(*estr, "e-0");
 	else
 		*estr = ft_strjoin(*estr, "e-");
