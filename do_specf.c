@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/02 07:48:21 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/02 08:00:38 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ static void	ft_precision(const char *str, t_specf specf, t_print *print)
 			print_len = ft_strxlen(print->str, '-');
 		else if (*str == 'g')
 			print_len = ft_strxlen(print->str, '.') - (*(print->str) == '-') 
-						- 4 * (ft_strchr(print->str, 'e') != NULL);
+						- 4 * (ft_strchr(print->str, 'e') != NULL)
+						- 1 * (ft_strncmp((print->str), "0.", 2) == 0 || 
+								ft_strncmp((print->str), "-0.", 3) == 0	);
 		else if (*str == 'e')
 			print_len = ft_strclenc(print->str, '.', 'e') - 1;
 		else
