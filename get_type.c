@@ -6,25 +6,81 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:32:08 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/01 11:20:18 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/02 17:56:28 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-static void	get_numtype(const char *str, char **print, va_list *arg)
+static void	get_numtype(const char *str, char **print, t_specf specf, va_list *arg)
 {
 	if (*str == 'd' || *str == 'i')
-		*print = ft_itoa_base(va_arg(*arg, int), "0123456789");
+	{
+		if (specf.lenght->hh == 1)
+			*print = ft_itoa_base((char)va_arg(*arg, int), "0123456789");
+		else if (specf.lenght->h == 1)
+			*print = ft_itoa_base((short int)va_arg(*arg, int), "0123456789");
+		else if (specf.lenght->l == 1)
+			*print = ft_litoa_base(va_arg(*arg, long int), "0123456789");
+		else if (specf.lenght->ll == 1)
+			*print = ft_llitoa_base(va_arg(*arg, long long int), "0123456789");
+		else
+			*print = ft_itoa_base(va_arg(*arg, int), "0123456789");
+	}
 	else if (*str == 'u')
-		*print = ft_utoa_base(va_arg(*arg, unsigned int), "0123456789");
+	{
+		if (specf.lenght->hh == 1)
+			*print = ft_utoa_base((unsigned char)va_arg(*arg, unsigned int), "0123456789");	
+		else if (specf.lenght->h == 1)
+			*print = ft_utoa_base((short unsigned int)va_arg(*arg, unsigned int), "0123456789");
+		else if (specf.lenght->l == 1)
+			*print = ft_lutoa_base(va_arg(*arg, long unsigned int), "0123456789");
+		else if (specf.lenght->ll == 1)
+			*print = ft_llutoa_base(va_arg(*arg, long long unsigned int), "0123456789");
+		else
+			*print = ft_utoa_base(va_arg(*arg, unsigned int), "0123456789");
+	} 
 	else if (*str == 'x')
-		*print = ft_utoa_base(va_arg(*arg, unsigned int), "0123456789abcdef");
+	{
+		if (specf.lenght->hh == 1)
+			*print = ft_utoa_base((unsigned char)va_arg(*arg, unsigned int), "0123456789abcdef");
+		else if (specf.lenght->h == 1)
+			*print = ft_utoa_base((short unsigned int)va_arg(*arg, unsigned int), "0123456789abcdef");
+		else if (specf.lenght->l == 1)
+			*print = ft_lutoa_base(va_arg(*arg, long unsigned int), "0123456789abcdef");
+		else if (specf.lenght->ll == 1)
+			*print = ft_llutoa_base(va_arg(*arg, long long unsigned int), "0123456789abcdef");
+		else
+			ft_utoa_base(va_arg(*arg, unsigned int), "0123456789abcdef");
+	}
 	else if (*str == 'X')
-		*print = ft_utoa_base(va_arg(*arg, unsigned int), "0123456789ABCDEF");
+	{
+		if (specf.lenght->hh == 1)
+			*print = ft_utoa_base((unsigned char)va_arg(*arg, unsigned int), "0123456789ABCDEF");
+		else if (specf.lenght->h == 1)
+			*print = ft_utoa_base((short unsigned int)va_arg(*arg, unsigned int), "0123456789ABCDEF");
+		else if (specf.lenght->l == 1)
+			*print = ft_lutoa_base(va_arg(*arg, long unsigned int), "0123456789ABCDEF");
+		else if (specf.lenght->ll == 1)
+			*print = ft_llutoa_base(va_arg(*arg, long long unsigned int), "0123456789ABCDEF");
+		else
+			*print = ft_utoa_base(va_arg(*arg, unsigned int), "0123456789ABCDEF");
+	}
 	else if (*str == 'o')
-		*print = ft_utoa_base(va_arg(*arg, unsigned int), "01234567");
+	{
+		if (specf.lenght->hh == 1)
+			*print = ft_utoa_base((unsigned char)va_arg(*arg, unsigned int), "01234567");
+		else if (specf.lenght->h == 1)
+			*print = ft_utoa_base((short unsigned int)va_arg(*arg, unsigned int), "01234567");
+		else if (specf.lenght->l == 1)
+			*print = ft_lutoa_base(va_arg(*arg, long unsigned int), "01234567");
+		else if (specf.lenght->ll == 1)
+			*print = ft_llutoa_base(va_arg(*arg, long long unsigned int), "01234567");
+		else
+			*print = ft_utoa_base(va_arg(*arg, unsigned int), "01234567");
+	}
+		
 }
 
 static void	get_strtype(const char *str, char **print, va_list *arg)
@@ -96,7 +152,7 @@ static void	get_floattype(char *str, char **print, t_specf *specf, va_list *arg)
 
 void	get_type(char *str, char **print, t_specf *specf, va_list *arg)
 {
-	get_numtype(str, print, arg);
+	get_numtype(str, print, *specf, arg);
 	get_strtype(str, print, arg);
 	get_ptrtype(str, print, *specf, arg);
 	get_floattype(str, print, specf, arg);

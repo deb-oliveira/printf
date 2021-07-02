@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:37:05 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/01 11:20:31 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/02 17:54:46 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,20 @@ typedef struct s_flags
 	bool	apostr;
 }				t_flags;
 
+typedef struct s_lenght
+{
+	bool	hh;
+	bool	h;
+	bool	l;
+	bool	ll;
+}				t_lenght;
+
 typedef struct s_specf
 {
-	t_flags	*flags;
-	int		width;
-	int		precision;
+	t_flags		*flags;
+	int			width;
+	int			precision;
+	t_lenght	*lenght;
 }				t_specf;
 
 typedef struct s_print
@@ -107,4 +116,12 @@ size_t	ft_strclenc(const char *str, char c1, char c2);
 void	ft_swap(char *a, char *b);
 
 char	*ft_gtoa_base(long double f, int n, char *base);
+
+char	*ft_lutoa_base(long unsigned int nbr, char *base);
+
+char	*ft_llutoa_base(long long unsigned int nbr, char *base);
+
+char	*ft_litoa_base(long int nbr, char *base);
+
+char	*ft_llitoa_base(long long int nbr, char *base);
 #endif

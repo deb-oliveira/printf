@@ -36,6 +36,7 @@ int	ft_printf(const char *str, ...)
 			count += print.len;
 		}
 		free(specf.flags);
+		free(specf.lenght);
 		str_cpy = ft_putcstr_fd((char *)(str_cpy + 1), '%', 1, &count);
 	}
 	va_end(arg);
