@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/02 09:51:31 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/02 10:09:30 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,8 @@ void	do_specf(const char *str, t_specf specf, t_print *print)
 		&& (ft_isdigit(*(print->str)) 
 		|| ((*(print->str) == '-' || *(print->str) == ' ' || *(print->str) == '+') && ft_isdigit((print->str)[1]))))
 		ft_precision(str, specf, print);
-	else if (*str == 'e' || (*str == 'g' && ft_strchr(print->str, 'e')))
+	else if ((*str == 'e' || (*str == 'g' && ft_strchr(print->str, 'e'))) && (ft_isdigit(*(print->str)) 
+		|| ((*(print->str) == '-' || *(print->str) == ' ' || *(print->str) == '+') && ft_isdigit((print->str)[1]))))
 	{
 		ft_precision(str, specf, print);
 		ft_putstr_fd(ft_strchr(print->str, 'e'), 1);
