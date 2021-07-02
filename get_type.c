@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:32:08 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/02 17:56:28 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/02 19:18:29 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	get_numtype(const char *str, char **print, t_specf specf, va_list *a
 		else if (specf.lenght->ll == 1)
 			*print = ft_llutoa_base(va_arg(*arg, long long unsigned int), "0123456789abcdef");
 		else
-			ft_utoa_base(va_arg(*arg, unsigned int), "0123456789abcdef");
+			*print = ft_utoa_base(va_arg(*arg, unsigned int), "0123456789abcdef");
 	}
 	else if (*str == 'X')
 	{
