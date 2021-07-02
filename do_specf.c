@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/02 09:30:02 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/02 09:51:31 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_zeroflag(const char *str, t_specf specf, t_print *print)
 		while (print->len < (size_t)specf.width)
 		{
 			if ((*str == 'g' || *str == 'f' || *str == 'e' || *str == 'd' || *str == 'i')
-				&& (*(print->str) == '-'|| *(print->str) == ' '))
+				&& (*(print->str) == '-'|| *(print->str) == ' ' || *(print->str) == '+'))
 			{
 				ft_putchar_fd(*(print->str), 1);
 				(print->str)++;
@@ -72,9 +72,9 @@ static void	ft_precision(const char *str, t_specf specf, t_print *print)
 		|| *str == 'u' || *str == 'x' || *str == 'X' || *str == 'f')
 	{
 		if (*str != 'f' && *str != 'e' && *str != 'g')
-			print_len = ft_strxlen(print->str, '-') - (*(print->str) == ' ');
+			print_len = ft_strxlen(print->str, '-') - (*(print->str) == ' ') -  (*(print->str) == '+');
 		else if (*str == 'g')
-			print_len = ft_strxlen(print->str, '.') - (*(print->str) == '-' || *(print->str) == ' ')
+			print_len = ft_strxlen(print->str, '.') - (*(print->str) == '-' || *(print->str) == ' ' || *(print->str) == '+')
 						- 4 * (ft_strchr(print->str, 'e') != NULL)
 						- 1 * (ft_strncmp((print->str), "0.", 2) == 0 || 
 								ft_strncmp((print->str), "-0.", 3) == 0	);
@@ -84,7 +84,8 @@ static void	ft_precision(const char *str, t_specf specf, t_print *print)
 			print_len = ft_strsublen(print->str, '.');
 		while (print_len < (size_t)specf.precision)
 		{
-			if ((*str == 'd' || *str == 'i') && (*(print->str) == '-' || *(print->str) == ' '))
+			if ((*str == 'd' || *str == 'i') && (*(print->str) == '-' || *(print->str) == ' '
+				|| *(print->str) == '+'))
 			{
 				ft_putchar_fd(*(print->str), 1);
 				(print->str)++;
@@ -92,8 +93,9 @@ static void	ft_precision(const char *str, t_specf specf, t_print *print)
 			ft_putstr_fd("0", 1);
 			print_len++;
 		}
-		if (specf.precision == 0 && (ft_strcmp((print->str), "0") == 0 || ft_strcmp((print->str), " 0") == 0))
-			(print->str)[*(print->str) == ' '] = '\0';
+		if (specf.precision == 0 && (ft_strcmp((print->str), "0") == 0 || ft_strcmp((print->str), " 0") == 0
+			|| ft_strcmp((print->str), "+0") == 0))
+			(print->str)[(*(print->str) == ' ' || *(print->str) == '+')] = '\0';
 	}
 	else if (*str == 's' && ft_strlen(print->str) > (size_t)specf.precision)
 		(print->str)[specf.precision] = '\0';
@@ -142,12 +144,28 @@ static void	ft_spaceflag(const char *str, t_specf specf, t_print *print)
 	}
 }
 
+static void	ft_plusflag(const char *str, t_specf specf, t_print *print)
+{
+	char	*print_aux;
+
+	if (specf.flags->plus == 0)
+		return ;
+	if (*(print->str) != '-' &&
+		(*str == 'd' || *str == 'i' ||  *str == 'g' || *str == 'f' || *str == 'e' ))
+	{
+		print_aux = print->str;
+		print->str = ft_strjoin("+", print->str);
+		free(print_aux);
+	}
+}
+
 void	do_specf(const char *str, t_specf specf, t_print *print)
 {
 	char	*print_aux;
 
 	ft_bytestoprint(str, specf, print);
 	ft_spaceflag(str, specf, print);
+	ft_plusflag(str, specf, print);
 	if (specf.flags->minus == 0 && specf.flags->zero == 0)
 		ft_width(str, specf, print);
 	ft_hashflag(str, specf, print);
@@ -164,7 +182,7 @@ void	do_specf(const char *str, t_specf specf, t_print *print)
 		ft_putstr_fd(print->str, 1);
 	if ((*str == 'f' || (*str == 'g' && !ft_strchr(print->str, 'e'))) 
 		&& (ft_isdigit(*(print->str)) 
-		|| ((*(print->str) == '-' || *(print->str) == ' ') && ft_isdigit((print->str)[1]))))
+		|| ((*(print->str) == '-' || *(print->str) == ' ' || *(print->str) == '+') && ft_isdigit((print->str)[1]))))
 		ft_precision(str, specf, print);
 	else if (*str == 'e' || (*str == 'g' && ft_strchr(print->str, 'e')))
 	{

@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:05:09 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/01 13:52:59 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/02 09:49:11 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	get_flags(char **str, t_specf *specf)
 	if (specf->flags->zero == 1 && specf->flags->minus == 1)
 		specf->flags->zero = 0;
 	if (specf->flags->plus == 1 && specf->flags->space == 1)
-		specf->flags->plus = 0;
+		specf->flags->space = 0;
 }
 
 static void	get_width(char **str, t_specf *specf, va_list *arg)
