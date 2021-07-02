@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:32:51 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/01 11:17:33 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/02 09:24:33 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	add_e(char **estr, int n, int exp, int sig)
 		free(estr_aux);
 	}
 	estr_aux = *estr;
-	if (0 < exp && exp <= 9)
+	if (0 < exp && exp <= 10)
 		*estr = ft_strjoin(*estr, "e+0");
 	else if (0 < exp)
 		*estr = ft_strjoin(*estr, "e+");

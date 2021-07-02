@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/02 08:29:57 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/02 09:22:20 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	ft_precision(const char *str, t_specf specf, t_print *print)
 						- 1 * (ft_strncmp((print->str), "0.", 2) == 0 || 
 								ft_strncmp((print->str), "-0.", 3) == 0	);
 		else if (*str == 'e')
-			print_len = ft_strclenc(print->str, '.', 'e') - 1;
+			print_len = ft_strclenc(print->str, '.', 'e') - 1 * (ft_strchr(print->str, '.') != NULL);
 		else
 			print_len = ft_strsublen(print->str, '.');
 		while (print_len < (size_t)specf.precision)
@@ -92,7 +92,7 @@ static void	ft_precision(const char *str, t_specf specf, t_print *print)
 			ft_putstr_fd("0", 1);
 			print_len++;
 		}
-		if (specf.precision == 0 && *(print->str) == '0' && print_len == 1)
+		if (specf.precision == 0 && (ft_strcmp((print->str), "0") == 0 || ft_strcmp((print->str), " 0") == 0))
 			*(print->str) = '\0';
 	}
 	else if (*str == 's' && ft_strlen(print->str) > (size_t)specf.precision)
@@ -164,7 +164,7 @@ void	do_specf(const char *str, t_specf specf, t_print *print)
 		ft_putstr_fd(print->str, 1);
 	if ((*str == 'f' || (*str == 'g' && !ft_strchr(print->str, 'e'))) 
 		&& (ft_isdigit(*(print->str)) 
-		|| (*(print->str) == '-' && ft_isdigit((print->str)[1]))))
+		|| ((*(print->str) == '-' || *(print->str) == ' ') && ft_isdigit((print->str)[1]))))
 		ft_precision(str, specf, print);
 	else if (*str == 'e' || (*str == 'g' && ft_strchr(print->str, 'e')))
 	{
@@ -174,4 +174,5 @@ void	do_specf(const char *str, t_specf specf, t_print *print)
 	if (specf.flags->minus == 1)
 		ft_width(str, specf, print);
 	free(print_aux);
+	
 }
