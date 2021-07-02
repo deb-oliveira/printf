@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:05:09 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/02 15:55:33 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/02 19:45:04 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ static void	get_lenght(char **str, t_specf *specf)
 		specf->lenght->hh = 1;
 	else if (ft_strncmp(*str, "h", 1) == 0)
 		specf->lenght->h = 1;
-	else if (ft_strncmp(*str, "l", 1) == 0)
-		specf->lenght->l = 1;
 	else if (ft_strncmp(*str, "ll", 2) == 0)
 		specf->lenght->ll = 1;
+	else if (ft_strncmp(*str, "l", 1) == 0)
+		specf->lenght->l = 1;
 	if (specf->lenght->h == 1 || specf->lenght->l == 1)
 		(*str)++;
 	else if (specf->lenght->hh == 1 || specf->lenght->ll == 1)
