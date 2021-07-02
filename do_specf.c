@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/01 17:00:00 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/02 07:48:21 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ static void	ft_precision(const char *str, t_specf specf, t_print *print)
 	{
 		if (*str != 'f' && *str != 'e' && *str != 'g')
 			print_len = ft_strxlen(print->str, '-');
-		else if (*str == 'e' || (*str == 'g' && ft_strchr(print->str, 'e')))
+		else if (*str == 'g')
+			print_len = ft_strxlen(print->str, '.') - (*(print->str) == '-') 
+						- 4 * (ft_strchr(print->str, 'e') != NULL);
+		else if (*str == 'e')
 			print_len = ft_strclenc(print->str, '.', 'e') - 1;
 		else
 			print_len = ft_strsublen(print->str, '.');
@@ -124,11 +127,15 @@ static char	*ft_xputcstr_fd(char *s, char c, int fd)
 
 void	do_specf(const char *str, t_specf specf, t_print *print)
 {
+	char	*print_aux;
 
 	ft_bytestoprint(str, specf, print);
-	if (specf.flags->minus == 0)
+	if (specf.flags->minus == 0 && specf.flags->zero == 0)
 		ft_width(str, specf, print);
 	ft_hashflag(str, specf, print);
+	print_aux = print->str;
+	if (specf.flags->minus == 0 && specf.flags->zero == 1)
+		ft_width(str, specf, print);
 	if (*str != 'f' && *str != 'e' && *str != 'g')
 		ft_precision(str, specf, print);
 	if (*str == 'c')
@@ -148,5 +155,5 @@ void	do_specf(const char *str, t_specf specf, t_print *print)
 	}
 	if (specf.flags->minus == 1)
 		ft_width(str, specf, print);
-	free(print->str);
+	free(print_aux);
 }
