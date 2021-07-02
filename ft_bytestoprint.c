@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 10:55:29 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/02 07:47:31 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/02 08:17:34 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ void	ft_bytestoprint(const char *str, t_specf specf, t_print *print)
 		if (*(print->str) != '0')
 			print->len += 2 * (*str == 'x' || *str == 'X') + (*str == 'o');
 		if ((*str == 'g' || *str == 'e' || *str == 'f') && !ft_strchr(print->str, '.'))
+			print->len += 1;
+	}
+	if (specf.flags->space == 1)
+	{
+		if (*(print->str) != '-' &&
+			(*str == 'd' || *str == 'i' ||  *str == 'g' || *str == 'f' || *str == 'e' ))
 			print->len += 1;
 	}
 }
