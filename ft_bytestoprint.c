@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 10:55:29 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/02 09:42:03 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/02 11:41:26 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	ft_bytestoprint(const char *str, t_specf specf, t_print *print)
 		(specf.flags->hash == 1 && *str == 'g' && ft_strchr(print->str, '.') && !ft_strchr(print->str, 'e')))
 		&& (ft_isdigit(*(print->str)) || ((print->str)[0] == '-' && ft_isdigit((print->str)[1]))))
 		print->len = specf.precision
-			+ (ft_strchr(print->str, '.') - print->str + 1);
+			+ (*str != 'g') * (ft_strchr(print->str, '.') - print->str) 
+			+ 1;
 	else if (specf.precision > 0 && (*str == 'e' || 
 		(specf.flags->hash == 1 && *str == 'g' && ft_strchr(print->str, '.') && ft_strchr(print->str, 'e')))
 		&& (ft_isdigit(*(print->str)) || ((print->str)[0] == '-' && ft_isdigit((print->str)[1]))))
