@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/02 09:22:20 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/02 09:30:02 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void	ft_precision(const char *str, t_specf specf, t_print *print)
 			print_len++;
 		}
 		if (specf.precision == 0 && (ft_strcmp((print->str), "0") == 0 || ft_strcmp((print->str), " 0") == 0))
-			*(print->str) = '\0';
+			(print->str)[*(print->str) == ' '] = '\0';
 	}
 	else if (*str == 's' && ft_strlen(print->str) > (size_t)specf.precision)
 		(print->str)[specf.precision] = '\0';
