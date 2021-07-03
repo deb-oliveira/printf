@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putcstr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 18:29:28 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 10:52:42 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/07/03 08:37:38 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-char	*ft_putcstr_fd(char *s, char c, int fd, int *n)
+char	*ft_putcstr_fd(char *s, char c, int fd, size_t *n)
 {
 	if (!s)
 		return (NULL);

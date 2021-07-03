@@ -15,30 +15,24 @@
 
 int	ft_printf(const char *str, ...)
 {
-	char	*str_cpy;
+	t_print	str_cpy;
 	t_print	print;
 	t_specf	specf;
 	va_list	arg;
-	int		count;
 
 	va_start(arg, str);
-	count = 0;
-	str_cpy = ft_putcstr_fd((char *)str, '%', 1, &count);
-	while (*str_cpy)
+	str_cpy.len = 0;
+	str_cpy.str = ft_putcstr_fd((char *)str, '%', 1, &str_cpy.len);
+	while (*(str_cpy.str))
 	{
-		get_specf(&str_cpy, &specf, &arg);
-		if (*str_cpy == 'n')
-			*(va_arg(arg, int *)) = count;
-		else
-		{
-			get_type(str_cpy, &(print.str), &specf, &arg);
-			do_specf(str_cpy, specf, &print);
-			count += print.len;
-		}
+		get_specf(&str_cpy.str, &specf, &arg);
+		get_type(str_cpy, &(print.str), &specf, &arg);
+		do_specf(str_cpy.str, specf, &print);
+		str_cpy.len += print.len;
 		free(specf.flags);
 		free(specf.lenght);
-		str_cpy = ft_putcstr_fd((char *)(str_cpy + 1), '%', 1, &count);
+		str_cpy.str = ft_putcstr_fd((str_cpy.str + 1), '%', 1, &str_cpy.len);
 	}
 	va_end(arg);
-	return (count);
+	return (str_cpy.len);
 }

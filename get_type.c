@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:32:08 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/02 19:18:29 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/03 08:42:09 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,23 @@ static void	get_numtype(const char *str, char **print, t_specf specf, va_list *a
 		
 }
 
+static void	get_ntype(t_print str, char **print, t_specf specf, va_list *arg)
+{
+	if (*(str.str) == 'n')
+	{
+		if (specf.lenght->hh == 1)
+			*((char *)va_arg(*arg, int *)) = str.len;
+		else if (specf.lenght->h == 1)
+			*((short int *)va_arg(*arg, int *)) = str.len;
+		else if (specf.lenght->l == 1)
+			*(va_arg(*arg, long int *)) = str.len;
+		else if (specf.lenght->ll == 1)
+			*(va_arg(*arg, long long int *)) = str.len;
+		else
+			*(va_arg(*arg, int *)) = str.len;
+		*print = strdup("");
+	}
+}
 static void	get_strtype(const char *str, char **print, va_list *arg)
 {
 	if (*str == 's')
@@ -150,10 +167,11 @@ static void	get_floattype(char *str, char **print, t_specf *specf, va_list *arg)
 	}
 }
 
-void	get_type(char *str, char **print, t_specf *specf, va_list *arg)
+void	get_type(t_print str, char **print, t_specf *specf, va_list *arg)
 {
-	get_numtype(str, print, *specf, arg);
-	get_strtype(str, print, arg);
-	get_ptrtype(str, print, *specf, arg);
-	get_floattype(str, print, specf, arg);
+	get_numtype(str.str, print, *specf, arg);
+	get_strtype(str.str, print, arg);
+	get_ptrtype(str.str, print, *specf, arg);
+	get_floattype(str.str, print, specf, arg);
+	get_ntype(str, print, *specf, arg);
 }
