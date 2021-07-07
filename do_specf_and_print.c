@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/07 10:44:54 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/07 10:59:18 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	ft_precision(const char *str, t_specf specf, char **print)
 
 	if (specf.precision < 0)
 		return ;
-	if ((*str == 'g' && specf.flags->hash == 1) || (*str != 'g'
+	if ((*str == 'g' && specf.flags->hash == 1) || (*str != 'g' && *str != '%'
 			&& *str != 's' && *str != 'c' && *str != 'p' && *str != 'n'))
 	{
 		ft_prec_len(str, print, &len);
