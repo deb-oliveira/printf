@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 10:07:14 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/07/05 12:31:26 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/07 11:23:59 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,20 @@ char	*ft_ftfree(int n, ...)
 {
 	va_list		arg;
 	t_list		*s;
-	t_functions	ft;
+	t_functions	*ft;
 	char		*str;
 
+	str = NULL;
+	ft = ft_calloc(1, sizeof(t_functions));
 	va_start(arg, n);
 	if (n == 2)
-		ft_ft2free(ft, &s, &arg, &str);
+		ft_ft2free(*ft, &s, &arg, &str);
 	else if (n == 3)
-		ft_ft3free(ft, &s, &arg, &str);
+		ft_ft3free(*ft, &s, &arg, &str);
 	else if (n == 4)
-		ft_ft4free(ft, &s, &arg, &str);
+		ft_ft4free(*ft, &s, &arg, &str);
 	ft_lstclear(&s, &free);
 	va_end(arg);
+	free(ft);
 	return (str);
 }
