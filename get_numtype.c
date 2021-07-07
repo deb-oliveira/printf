@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 17:15:58 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/07/06 17:16:57 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/07 11:49:02 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	get_utype(char *str, char **print, t_specf specf, va_list *arg)
 	if (*str == 'u')
 	{
 		if (specf.lenght->hh == 1)
-			*print = ft_utoa_base((__u_char)va_arg(*arg, unsigned int), base);
+			*print = ft_utoa_base((uint8_t)va_arg(*arg, unsigned int), base);
 		else if (specf.lenght->h == 1)
-			*print = ft_utoa_base((__u_short)va_arg(*arg, unsigned int), base);
+			*print = ft_utoa_base((uint16_t)va_arg(*arg, unsigned int), base);
 		else if (specf.lenght->l == 1)
 			*print = ft_lutoa_base(va_arg(*arg, long unsigned int), base);
 		else if (specf.lenght->ll == 1)
@@ -63,9 +63,9 @@ void	get_xtype(char *str, char **print, t_specf specf, va_list *arg)
 	if (*str == 'x')
 	{
 		if (specf.lenght->hh == 1)
-			*print = ft_utoa_base((__u_char)va_arg(*arg, unsigned int), base);
+			*print = ft_utoa_base((uint8_t)va_arg(*arg, unsigned int), base);
 		else if (specf.lenght->h == 1)
-			*print = ft_utoa_base((__u_short)va_arg(*arg, unsigned int), base);
+			*print = ft_utoa_base((uint16_t)va_arg(*arg, unsigned int), base);
 		else if (specf.lenght->l == 1)
 			*print = ft_lutoa_base(va_arg(*arg, long unsigned int), base);
 		else if (specf.lenght->ll == 1)
@@ -84,9 +84,9 @@ void	get_Xtype(char *str, char **print, t_specf specf, va_list *arg)
 	if (*str == 'X')
 	{
 		if (specf.lenght->hh == 1)
-			*print = ft_utoa_base((__u_char)va_arg(*arg, unsigned int), base);
+			*print = ft_utoa_base((uint8_t)va_arg(*arg, unsigned int), base);
 		else if (specf.lenght->h == 1)
-			*print = ft_utoa_base((__u_short)va_arg(*arg, unsigned int), base);
+			*print = ft_utoa_base((uint16_t)va_arg(*arg, unsigned int), base);
 		else if (specf.lenght->l == 1)
 			*print = ft_lutoa_base(va_arg(*arg, long unsigned int), base);
 		else if (specf.lenght->ll == 1)
@@ -105,9 +105,9 @@ void	get_otype(char *str, char **print, t_specf specf, va_list *arg)
 	if (*str == 'o')
 	{
 		if (specf.lenght->hh == 1)
-			*print = ft_utoa_base((__u_char)va_arg(*arg, unsigned int), base);
+			*print = ft_utoa_base((uint8_t)va_arg(*arg, unsigned int), base);
 		else if (specf.lenght->h == 1)
-			*print = ft_utoa_base((__u_short)va_arg(*arg, unsigned int), base);
+			*print = ft_utoa_base((uint16_t)va_arg(*arg, unsigned int), base);
 		else if (specf.lenght->l == 1)
 			*print = ft_lutoa_base(va_arg(*arg, long unsigned int), base);
 		else if (specf.lenght->ll == 1)
