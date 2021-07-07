@@ -13,26 +13,26 @@
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_printf(const char *s, ...)
 {
-	t_print	str_cpy;
+	t_print	str;
 	t_print	print;
 	t_specf	specf;
 	va_list	arg;
 
-	va_start(arg, str);
-	str_cpy.len = 0;
-	str_cpy.str = ft_putcstr_fd((char *)str, '%', 1, &str_cpy.len);
-	while (*(str_cpy.str))
+	va_start(arg, s);
+	str.bytprint = 0;
+	str.content = ft_nputcstr_fd((char *)s, '%', 1, &str.bytprint);
+	while (*(str.content))
 	{
-		get_specf(&str_cpy.str, &specf, &arg);
-		get_type(str_cpy, &(print.str), &specf, &arg);
-		do_specf(str_cpy.str, specf, &print);
-		str_cpy.len += print.len;
+		get_specf(&str.content, &specf, &arg);
+		get_type(str, &(print.content), &specf, &arg);
+		do_specf_and_print(str.content, specf, &print);
+		str.bytprint += print.bytprint;
 		free(specf.flags);
 		free(specf.lenght);
-		str_cpy.str = ft_putcstr_fd((str_cpy.str + 1), '%', 1, &str_cpy.len);
+		str.content = ft_nputcstr_fd((str.content + 1), '%', 1, &str.bytprint);
 	}
 	va_end(arg);
-	return (str_cpy.len);
+	return (str.bytprint);
 }

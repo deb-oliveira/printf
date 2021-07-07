@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsublen.c                                     :+:      :+:    :+:   */
+/*   ft_putcstr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/29 07:45:20 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/29 16:31:11 by doliveira        ###   ########.fr       */
+/*   Created: 2021/06/11 18:29:28 by doliveira         #+#    #+#             */
+/*   Updated: 2021/07/05 09:20:07 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-size_t	ft_strsublen(const char *str, char c)
+char	*ft_nputcstr_fd(char *s, char c, int fd, size_t *n)
 {
-	size_t	size;
-
-	str = ft_strchr(str, c);
-	if (str)
-		str++;
-	size = 0;
-	while (str && str[size] != '\0')
-		size++;
-	return (size);
+	if (!s)
+		return (NULL);
+	while (*s && *s != c)
+	{
+		write(fd, s, 1);
+		s++;
+		(*n)++;
+	}
+	if (*s == c)
+		s++;
+	return (s);
 }

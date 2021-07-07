@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 17:52:22 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/07/03 08:16:14 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/06 10:57:00 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ char	*ft_litoa_base(long int nbr, char *base)
 	str--;
 	return (str);
 }
-

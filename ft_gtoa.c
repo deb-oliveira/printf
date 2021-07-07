@@ -10,60 +10,60 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-void	get_zeros_and_point_out(char **gstr)
+static void	get_zeros_and_point_out(char **gstr)
 {
 	int		idx;
 	char	*gstr_aux;
 
 	idx = ft_strclen(*gstr, 'e') - 1;
-	if (idx == 0 || !ft_strchr(*gstr, '.') || ((*gstr)[idx] != '0' && (*gstr)[idx] != '.'))
-		return	;
+	if (idx == 0 || !ft_strchr(*gstr, '.')
+		|| ((*gstr)[idx] != '0' && (*gstr)[idx] != '.'))
+		return ;
 	else
 	{
 		(*gstr)[idx] = '\0';
 		gstr_aux = *gstr;
 		*gstr = ft_strjoin(*gstr, &(*gstr)[idx + 1]);
 		free(gstr_aux);
-		return(get_zeros_and_point_out(gstr));
+		return (get_zeros_and_point_out(gstr));
 	}
 }
 
-char	*ft_gtoa_base(long double f, int n, char *base)
+static void	get_gstr(char **gstr, int exp)
 {
-	char	*gstr;
 	char	*gstr_aux;
-	int		exp;
 	int		idx;
 
-	gstr = ft_etoa_base(f, n - 1, base);
-	if (!ft_isdigit(*gstr) && (*gstr != '-' || (*gstr == '-' && !ft_isdigit(gstr[1]))))
-		return(gstr);
-	exp = ft_atoi(ft_strchr(gstr, 'e') + 1);
-	if (exp < -4 || exp >= n)
-	{
-		get_zeros_and_point_out(&gstr);
-		return (gstr);
-	}
-	idx = (*gstr == '-');
+	idx = (**gstr == '-');
 	while (exp-- > 0 && ++idx)
-		ft_swap(&gstr[idx], &gstr[idx + 1]);
+		ft_swap(&(*gstr)[idx], &(*gstr)[idx + 1]);
 	while (++exp < 0)
 	{
-		gstr_aux = gstr;
-		gstr = ft_strxdup(gstr, '.');
+		gstr_aux = *gstr;
+		*gstr = ft_strxdup(*gstr, '.');
 		free(gstr_aux);
-		gstr_aux = gstr;
-		gstr = ft_strmjoin(gstr, "0.", 1 * (*gstr == '-'));
+		gstr_aux = *gstr;
+		*gstr = ft_strmjoin(*gstr, "0.", 1 * (**gstr == '-'));
 		free(gstr_aux);
 	}
-	gstr_aux = gstr;
-	gstr[ft_strclen(gstr, 'e')] = '\0';
-	gstr = ft_strdup(gstr);
-	free(gstr_aux);
+	(*gstr)[ft_strclen(*gstr, 'e')] = '\0';
+	*gstr = ft_ftfree(2, &ft_strdup, *gstr);
+}
+
+char	*ft_gtoa(long double f, int precision)
+{
+	char	*gstr;
+	int		exp;
+
+	gstr = ft_etoa(f, precision - 1);
+	if ((!ft_isdigit(*gstr) && *gstr != '-') || ft_strcmp(gstr, "-inf") == 0)
+		return (gstr);
+	exp = ft_atoi(ft_strchr(gstr, 'e') + 1);
+	if (exp >= -4 && exp < precision)
+		get_gstr(&gstr, exp);
 	get_zeros_and_point_out(&gstr);
 	return (gstr);
 }

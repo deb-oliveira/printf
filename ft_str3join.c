@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_3strjoin.c                                      :+:      :+:    :+:   */
+/*   ft_str3join.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:41:18 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 07:29:22 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/07/05 16:28:09 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-char	*ft_3strjoin(char const *s1, char const *s2, char const *s3)
+char	*ft_str3join(char const *s1, char const *s2, char const *s3)
 {
 	char	*str;
 	int		len_str;

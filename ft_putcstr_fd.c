@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 18:29:28 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/03 08:37:38 by dde-oliv         ###   ########.fr       */
+/*   Created: 2021/07/06 12:10:00 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/06 12:10:24 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "ft_printf.h"
+#include "libft/libft.h"
 
-char	*ft_putcstr_fd(char *s, char c, int fd, size_t *n)
+char	*ft_putcstr_fd(char *s, char c, int fd)
 {
 	if (!s)
 		return (NULL);
@@ -21,7 +21,6 @@ char	*ft_putcstr_fd(char *s, char c, int fd, size_t *n)
 	{
 		write(fd, s, 1);
 		s++;
-		(*n)++;
 	}
 	if (*s == c)
 		s++;

@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:05:09 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/02 19:45:04 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/05 14:28:36 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	get_precision(char **str, t_specf *specf, va_list *arg)
 
 static void	get_lenght(char **str, t_specf *specf)
 {
- 	specf->lenght = ft_calloc(1, sizeof(t_lenght));
+	specf->lenght = ft_calloc(1, sizeof(t_lenght));
 	if (ft_strncmp(*str, "hh", 2) == 0)
 		specf->lenght->hh = 1;
 	else if (ft_strncmp(*str, "h", 1) == 0)
