@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 21:15:15 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/07 09:37:44 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/07 10:44:54 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	do_specf_and_print(const char *str, t_specf specf, t_print *print)
 	if (*str == 'c')
 		ft_putchar_fd(*(print->content), 1);
 	else
-		ft_putcstr_fd(print->content, 'e', 1);
+		ft_putcstr_fd(print->content, 'e' * (*str == 'e' || *str == 'g'), 1);
 	if ((*str == 'e' || *str == 'f' || *str == 'g')
 		&& (*(print->content) != 'i' && *(print->content) != 'n'
 			&& ft_strcmp(print->content, "-inf") != 0))
