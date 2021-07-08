@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:37:05 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/07/08 14:04:31 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/08 14:13:46 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_print
 }				t_print;
 
 int		ft_printf(const char *str, ...);
+
+int		ft_printf_fd(const char *s, int fd, ...);
 
 void	get_specf(char **str, t_specf *specf, va_list *arg);
 
