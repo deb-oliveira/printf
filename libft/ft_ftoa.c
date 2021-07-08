@@ -6,13 +6,13 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 14:43:29 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/07/08 08:59:44 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/08 16:35:03 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*get_ieee754 (double f)
+static char	*get_ieee754(double f)
 {
 	t_fbits	fnum;
 	char	*fbits;

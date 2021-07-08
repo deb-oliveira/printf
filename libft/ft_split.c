@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 00:30:16 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/06/14 12:58:02 by doliveira        ###   ########.fr       */
+/*   Updated: 2021/07/08 16:36:01 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void 	ft_build_words(int j, char **split, char *scpy, char c)
+static void	ft_build_words(int j, char **split, char *scpy, char c)
 {
 	int	i;
 
