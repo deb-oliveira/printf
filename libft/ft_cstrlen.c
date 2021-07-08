@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   ft_cstrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/15 10:09:26 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/15 10:15:37 by doliveira        ###   ########.fr       */
+/*   Created: 2021/06/29 07:45:20 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:59:16 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_max(int a, int b)
+#include "libft.h"
+
+size_t	ft_cstrlen(const char *str, char c)
 {
-	if (a >= b)
-		return (a);
-	return (b);
+	size_t	size;
+
+	str = ft_strchr(str, c);
+	if (str)
+		str++;
+	size = 0;
+	while (str && str[size] != '\0')
+		size++;
+	return (size);
 }

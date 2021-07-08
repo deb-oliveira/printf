@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putcstr_fd.c                                    :+:      :+:    :+:   */
+/*   ft_u128toa_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/06 12:10:00 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/07/06 12:10:24 by dde-oliv         ###   ########.fr       */
+/*   Created: 2021/06/22 14:30:07 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:57:13 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-char	*ft_putcstr_fd(char *s, char c, int fd)
+char	*ft_u128toa_base(__uint128_t nbr, char *base)
 {
-	if (!s)
-		return (NULL);
-	while (*s && *s != c)
+	unsigned int	size;
+	char			*str;
+	char			*str_aux;
+
+	size = ft_strlen(base);
+	if (nbr == 0)
 	{
-		write(fd, s, 1);
-		s++;
+		str = ft_strcjoin("", base[0]);
+		return (str);
 	}
-	if (*s == c)
-		s++;
-	return (s);
+	str = ft_calloc(1, sizeof(char));
+	while (nbr != 0)
+	{			
+		str_aux = str;
+		str = ft_strcjoin(str, base[nbr % size]);
+		free(str_aux);
+		nbr = nbr / size;
+	}
+	ft_strrev(&str);
+	return (str);
 }

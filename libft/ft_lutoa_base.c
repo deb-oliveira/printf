@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uptrtoa_base.c                                  :+:      :+:    :+:   */
+/*   ft_lutoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 19:24:17 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/29 17:39:42 by doliveira        ###   ########.fr       */
+/*   Created: 2021/07/02 17:50:28 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:52:16 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
 static unsigned int	is_base(char *str)
 {
@@ -35,9 +34,9 @@ static unsigned int	is_base(char *str)
 	return (1);
 }
 
-char	*ft_uptrtoa_base(uintptr_t nbr, char *base)
+char	*ft_lutoa_base(long unsigned int nbr, char *base)
 {
-	uintptr_t		size;
+	unsigned int	size;
 	char			*str;
 	char			*str_aux;
 	char			num[2];

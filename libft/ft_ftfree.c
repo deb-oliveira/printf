@@ -6,12 +6,11 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 10:07:14 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/07/07 11:23:59 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/08 08:50:56 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
 static void	ft_ft2free(t_functions ft, t_list **s, va_list *arg, char **str)
 {

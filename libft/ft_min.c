@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strxlen.c                                       :+:      :+:    :+:   */
+/*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/25 15:26:36 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/25 15:37:49 by doliveira        ###   ########.fr       */
+/*   Created: 2021/06/25 16:21:23 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:53:18 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
-
-size_t	ft_strxlen(char *src, char x)
+int	ft_min(int a, int b)
 {
-	size_t	size;
-	size_t	count;
-
-	count = 0;
-	size = 0;
-	while (src[count] != '\0')
-	{
-		if (src[count] != x)
-			size++;
-		count++;
-	}
-	return (size);
+	if (a <= b)
+		return (a);
+	return (b);
 }

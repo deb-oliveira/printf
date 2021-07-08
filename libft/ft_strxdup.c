@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putcstr_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strxdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 18:29:28 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/05 09:20:07 by dde-oliv         ###   ########.fr       */
+/*   Created: 2021/06/24 14:59:12 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:56:30 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
-char	*ft_nputcstr_fd(char *s, char c, int fd, size_t *n)
+char	*ft_strxdup(char *src, char x)
 {
-	if (!s)
+	char	*src_copy;
+	int		size;
+	int		count;
+
+	src_copy = malloc(ft_strxlen(src, x) + 1);
+	if (!src_copy)
 		return (NULL);
-	while (*s && *s != c)
+	count = 0;
+	size = 0;
+	while (src[count] != '\0')
 	{
-		write(fd, s, 1);
-		s++;
-		(*n)++;
+		if (src[count] != x)
+		{
+			src_copy[size] = src[count];
+			size++;
+		}
+		count++;
 	}
-	if (*s == c)
-		s++;
-	return (s);
+	src_copy[size] = '\0';
+	return (src_copy);
 }

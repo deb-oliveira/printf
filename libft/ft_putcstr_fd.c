@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strclenc.c                                      :+:      :+:    :+:   */
+/*   ft_putcstr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 11:02:42 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/06 10:57:25 by dde-oliv         ###   ########.fr       */
+/*   Created: 2021/07/06 12:10:00 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:53:57 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
-size_t	ft_strclenc(const char *str, char c1, char c2)
+char	*ft_putcstr_fd(char *s, char c, int fd)
 {
-	size_t	size;
-
-	size = 0;
-	while (*str != '\0' && *str != c1)
-		str++;
-	while (str[size] != '\0' && str[size] != c2)
-		size++;
-	return (size);
+	if (!s)
+		return (NULL);
+	while (*s && *s != c)
+	{
+		write(fd, s, 1);
+		s++;
+	}
+	if (*s == c)
+		s++;
+	return (s);
 }

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_upointtoa_base.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/23 14:48:34 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/30 18:02:59 by doliveira        ###   ########.fr       */
+/*   Created: 2021/06/23 14:48:34 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:57:25 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
 static void	get_round(char **str, size_t str_len)
 {

@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_uptrtoa_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/07 16:30:35 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/07/06 16:24:26 by dde-oliv         ###   ########.fr       */
+/*   Created: 2021/06/11 19:24:17 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:57:37 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
 static unsigned int	is_base(char *str)
 {
@@ -35,9 +34,9 @@ static unsigned int	is_base(char *str)
 	return (1);
 }
 
-char	*ft_utoa_base(unsigned int nbr, char *base)
+char	*ft_uptrtoa_base(uintptr_t nbr, char *base)
 {
-	unsigned int	size;
+	uintptr_t		size;
 	char			*str;
 	char			*str_aux;
 	char			num[2];

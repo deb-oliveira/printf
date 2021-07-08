@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/24 14:32:51 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/07 09:52:35 by dde-oliv         ###   ########.fr       */
+/*   Created: 2021/06/24 14:32:51 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:59:28 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
 static void	get_round(char **estr, int precision)
 {

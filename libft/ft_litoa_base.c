@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_llitoa_base.c                                   :+:      :+:    :+:   */
+/*   ft_litoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/02 17:53:06 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/07/03 08:18:52 by dde-oliv         ###   ########.fr       */
+/*   Created: 2021/07/02 17:52:22 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:51:51 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
-char	*ft_llitoa_base(long long int nbr, char *base)
+char	*ft_litoa_base(long int nbr, char *base)
 {
-	int				size;
 	char			*str;
 	char			*str_aux;
+	int				size;
 
 	if (nbr >= 0)
-		return (ft_llutoa_base((long long unsigned int)nbr, base));
+		return (ft_lutoa_base((long unsigned int)nbr, base));
 	size = ft_strlen(base);
 	str = ft_strdup("-");
 	while (nbr != 0)

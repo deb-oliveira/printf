@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_gtoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_gtoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/01 07:50:13 by dde-oliv         #+#    #+#             */
-/*   Updated: 2021/07/01 07:53:22 by dde-oliv         ###   ########.fr       */
+/*   Created: 2021/07/01 07:50:13 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:59:52 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
 static void	get_zeros_and_point_out(char **gstr)
 {

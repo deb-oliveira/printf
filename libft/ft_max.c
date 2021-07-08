@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/22 10:18:33 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/22 10:28:40 by doliveira        ###   ########.fr       */
+/*   Created: 2021/06/15 10:09:26 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 09:01:10 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-
-int	ft_strcmp(const char *str1, const char *str2)
+int	ft_max(int a, int b)
 {
-	size_t	i;
-
-	i = 0;
-	while (str1[i] && str2[i] && str1[i] == str2[i])
-		i++;
-	return ((unsigned char)str1[i] - (unsigned char)str2[i]);
+	if (a >= b)
+		return (a);
+	return (b);
 }

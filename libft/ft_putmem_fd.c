@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_min.c                                           :+:      :+:    :+:   */
+/*   ft_putmem_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/25 16:21:23 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/28 10:39:41 by doliveira        ###   ########.fr       */
+/*   Created: 2021/06/14 15:11:11 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:54:17 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_min(int a, int b)
+#include "libft.h"
+
+void	ft_putmem_fd(const char *s, int n, int fd)
 {
-	if (a <= b)
-		return (a);
-	return (b);
+	int	count;
+
+	if (!s)
+		return ;
+	count = 0;
+	while (count < n)
+	{
+		write(fd, &s[count], 1);
+		count++;
+	}
 }

@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_litoa_base.c                                    :+:      :+:    :+:   */
+/*   ft_strmjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/02 17:52:22 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/07/06 10:57:00 by dde-oliv         ###   ########.fr       */
+/*   Created: 2021/06/14 10:34:39 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:56:02 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
-char	*ft_litoa_base(long int nbr, char *base)
+char	*ft_strmjoin(char const *s1, char const *s2, int start)
 {
-	char			*str;
-	char			*str_aux;
-	int				size;
+	char	*str;
+	char	*s1_aux;
+	char	*str_aux;
 
-	if (nbr >= 0)
-		return (ft_lutoa_base((long unsigned int)nbr, base));
-	size = ft_strlen(base);
-	str = ft_strdup("-");
-	while (nbr != 0)
-	{
-		str_aux = str;
-		str = ft_strcjoin(str, base[-(nbr % -size)]);
-		free(str_aux);
-		nbr = nbr / size;
-	}
-	str++;
-	ft_strrev(&str);
-	str--;
+	s1_aux = ft_substr(s1, 0, start);
+	str = ft_strjoin(s1_aux, s2);
+	free(s1_aux);
+	str_aux = str;
+	str = ft_strjoin(str, s1 + start);
+	free(str_aux);
 	return (str);
 }

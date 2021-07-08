@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsublen.c                                     :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/29 07:45:20 by doliveira         #+#    #+#             */
-/*   Updated: 2021/07/06 12:24:48 by dde-oliv         ###   ########.fr       */
+/*   Created: 2021/06/22 10:18:33 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:55:40 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
-size_t	ft_cstrlen(const char *str, char c)
+int	ft_strcmp(const char *str1, const char *str2)
 {
-	size_t	size;
+	size_t	i;
 
-	str = ft_strchr(str, c);
-	if (str)
-		str++;
-	size = 0;
-	while (str && str[size] != '\0')
-		size++;
-	return (size);
+	i = 0;
+	while (str1[i] && str2[i] && str1[i] == str2[i])
+		i++;
+	return ((unsigned char)str1[i] - (unsigned char)str2[i]);
 }

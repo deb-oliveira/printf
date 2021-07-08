@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 14:37:35 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/11 20:01:08 by doliveira        ###   ########.fr       */
+/*   Created: 2021/06/11 14:37:35 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 09:00:07 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
 char	*ft_itoa_base(int nbr, char *base)
 {

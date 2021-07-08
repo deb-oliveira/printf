@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcjoin.c                                      :+:      :+:    :+:   */
+/*   ft_strclen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/23 15:16:46 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/23 15:21:20 by doliveira        ###   ########.fr       */
+/*   Created: 2021/06/30 10:41:16 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:55:10 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
-char	*ft_strcjoin(char const *s1, char c)
+size_t	ft_strclen(const char *str, char c)
 {
-	char	*str;
-	char	*str_aux;
+	size_t	size;
 
-	str = ft_calloc(2, sizeof(char));
-	str[0] = c;
-	str_aux = str;
-	str = ft_strjoin(s1, str);
-	free(str_aux);
-	return (str);
+	size = 0;
+	while (str[size] != '\0' && str[size] != c)
+		size++;
+	return (size);
 }

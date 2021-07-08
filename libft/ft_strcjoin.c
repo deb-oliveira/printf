@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmjoin.c                                      :+:      :+:    :+:   */
+/*   ft_strcjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/14 10:34:39 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/14 10:43:21 by doliveira        ###   ########.fr       */
+/*   Created: 2021/06/23 15:16:46 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:54:58 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
-char	*ft_strmjoin(char const *s1, char const *s2, int start)
+char	*ft_strcjoin(char const *s1, char c)
 {
 	char	*str;
-	char	*s1_aux;
 	char	*str_aux;
 
-	s1_aux = ft_substr(s1, 0, start);
-	str = ft_strjoin(s1_aux, s2);
-	free(s1_aux);
+	str = ft_calloc(2, sizeof(char));
+	str[0] = c;
 	str_aux = str;
-	str = ft_strjoin(str, s1 + start);
+	str = ft_strjoin(s1, str);
 	free(str_aux);
 	return (str);
 }

@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putmem_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doliveira <doliveira@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/14 15:11:11 by doliveira         #+#    #+#             */
-/*   Updated: 2021/06/15 09:55:06 by doliveira        ###   ########.fr       */
+/*   Created: 2021/06/07 16:54:07 by dde-oliv          #+#    #+#             */
+/*   Updated: 2021/07/08 08:56:17 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putmem_fd(const char *s, int n, int fd)
+void	ft_strrev(char **str)
 {
-	int	count;
+	size_t		len_str;
+	size_t		count;
+	char		temp;
 
-	if (!s)
+	len_str = ft_strlen(*str);
+	if (len_str == 0)
 		return ;
+	len_str--;
 	count = 0;
-	while (count < n)
+	while (count < len_str)
 	{
-		write(fd, &s[count], 1);
+		temp = (*str)[count];
+		(*str)[count] = (*str)[len_str];
+		(*str)[len_str] = temp;
 		count++;
+		len_str--;
 	}
 }
