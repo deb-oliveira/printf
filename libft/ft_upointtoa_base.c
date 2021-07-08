@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 14:48:34 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/07/08 08:57:25 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/08 13:24:32 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ static void	get_lastdigit(double f, char *base, size_t base_size, char **str)
 	if (f * 10 <= 5.0 || ldigit != '9')
 	{
 		str_aux = *str;
-		if (f * 10 <= 5.0)
+		if (f * 10 < 5.0)
 			*str = ft_strcjoin(*str, ldigit);
+		else if (f * 10 == 5.0)
+			*str = ft_strcjoin(*str, ldigit + (ldigit >= '4' && ldigit != '9'));
 		else if (ldigit != '9')
 			*str = ft_strcjoin(*str, ldigit + 1);
 		free(str_aux);
