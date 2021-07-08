@@ -6,14 +6,14 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 17:23:36 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/07/06 18:08:53 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/08 14:02:05 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-void	ft_zeroflag(const char *str, t_specf specf, t_print *print)
+void	ft_zeroflag(const char *str, t_specf specf, t_print *print, int fd)
 {
 	if ((*str != 's' || *str != 'c' || *str != 'p'
 			|| *str != 'n' || *str == '%'))
@@ -25,10 +25,10 @@ void	ft_zeroflag(const char *str, t_specf specf, t_print *print)
 				&& (*(print->content) == '-' || *(print->content) == ' '
 					|| *(print->content) == '+'))
 			{
-				ft_putchar_fd(*(print->content), 1);
+				ft_putchar_fd(*(print->content), fd);
 				(print->content)++;
 			}
-			ft_putstr_fd("0", 1);
+			ft_putstr_fd("0", fd);
 			(print->bytprint)++;
 		}
 	}
@@ -36,13 +36,13 @@ void	ft_zeroflag(const char *str, t_specf specf, t_print *print)
 	{
 		while (print->bytprint < (size_t)specf.width)
 		{
-			ft_putstr_fd("0", 1);
+			ft_putstr_fd("0", fd);
 			(print->bytprint)++;
 		}
 	}
 }
 
-void	ft_hashflag(const char *str, t_specf specf, char **print)
+void	ft_hashflag(const char *str, t_specf specf, char **print, int fd)
 {
 	char	*print_aux;
 
@@ -50,9 +50,9 @@ void	ft_hashflag(const char *str, t_specf specf, char **print)
 		return ;
 	if ((*str == 'o' || *str == 'x' || *str == 'X') && **print != '0')
 	{
-		ft_putstr_fd("0", 1);
+		ft_putstr_fd("0", fd);
 		if (*str == 'x' || *str == 'X')
-			ft_putchar_fd(*str, 1);
+			ft_putchar_fd(*str, fd);
 	}
 	else if ((*str == 'g' || *str == 'e' || *str == 'f')
 		&& !ft_strchr(*print, '.'))

@@ -6,7 +6,7 @@
 /*   By: dde-oliv <dde-oliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:37:05 by dde-oliv          #+#    #+#             */
-/*   Updated: 2021/07/08 09:13:52 by dde-oliv         ###   ########.fr       */
+/*   Updated: 2021/07/08 14:04:31 by dde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ typedef struct s_print
 
 int		ft_printf(const char *str, ...);
 
-void	get_specf(char **str_cpy, t_specf *specf, va_list *arg);
+void	get_specf(char **str, t_specf *specf, va_list *arg);
 
 void	get_type(t_print str, char **print, t_specf *specf, va_list *arg);
 
-void	do_specf_and_print(const char *str_cpy, t_specf specf, t_print *print);
+void	do_specf_and_print(char *str, t_specf specf, t_print *print, int fd);
 
 void	ft_bytestoprint(const char *str, t_specf specf, t_print *print);
 
@@ -69,9 +69,9 @@ void	get_utype(char *str, char **print, t_specf specf, va_list *arg);
 
 void	get_dtype(char *str, char **print, t_specf specf, va_list *arg);
 
-void	ft_zeroflag(const char *str, t_specf specf, t_print *print);
+void	ft_zeroflag(const char *str, t_specf specf, t_print *print, int fd);
 
-void	ft_hashflag(const char *str, t_specf specf, char **print);
+void	ft_hashflag(const char *str, t_specf specf, char **print, int fd);
 
 void	ft_signedflag(const char *str, t_specf specf, char **print);
 
